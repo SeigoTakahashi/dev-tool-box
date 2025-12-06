@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 
@@ -19,8 +20,12 @@ type NavContentProps = {
  * - フッター情報
  */
 const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
+  // テーマコンテキストから現在のモードを取得
   const { mode } = useTheme();
-  
+
+  // ルーティング用ナビゲート関数
+  const navigate = useNavigate();
+
   // アコーディオンの展開状態を管理
   // キー: カテゴリID、値: 展開中かどうか
   const [expandedCategories, setExpandedCategories] = useState<
@@ -39,9 +44,16 @@ const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
     }));
   };
 
+  // ロゴクリック時にホームへ遷移
+  const handleTitleClick = () => {
+    navigate("/");
+  };
+
+  // テーマに応じたスタイルクラス
   const bgClass = mode === "dark" ? "bg-[#0f1724]" : "bg-white";
   const borderClass = mode === "dark" ? "border-white/6" : "border-gray-200";
-  const textSecondaryClass = mode === "dark" ? "text-gray-400" : "text-gray-600";
+  const textSecondaryClass =
+    mode === "dark" ? "text-gray-400" : "text-gray-600";
 
   return (
     <aside
@@ -50,7 +62,11 @@ const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
       } h-screen p-3 overflow-y-auto ${bgClass}`}
     >
       {/* ロゴ部分 */}
-      <div className="flex items-center gap-3 mb-4 px-1">
+      <div
+        className="flex items-center gap-3 mb-4 px-1"
+        onClick={handleTitleClick}
+        style={{ cursor: "pointer" }}
+      >
         <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
           <img src="/dev-icon.svg" alt="Dev Tool Box" className="w-8 h-8" />
         </div>
@@ -58,7 +74,9 @@ const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
         {!collapsed && (
           <div>
             <div className="text-sm font-semibold">Dev Tool Box</div>
-            <div className={`text-xs ${textSecondaryClass}`}>Handy dev utilities</div>
+            <div className={`text-xs ${textSecondaryClass}`}>
+              Handy dev utilities
+            </div>
           </div>
         )}
       </div>
@@ -88,6 +106,7 @@ const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
                       label={tool.label}
                       icon={tool.icon}
                       level={1}
+                      path={tool.path}
                     />
                   ))}
                 </div>

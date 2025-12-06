@@ -24,11 +24,11 @@ const SideNav: React.FC<SideNavProps> = ({
 }) => {
   return (
     <>
-      {/* デスクトップ用サイドナビ（完全に隠す/表示する） */}
+      {/* デスクトップ用サイドナビ（固定位置） */}
       <div
-        className={`hidden lg:flex ${collapsed ? "w-0" : "w-80"} ${
+        className={`hidden lg:flex fixed left-0 top-0 bottom-0 z-50 ${collapsed ? "w-0" : "w-80"} ${
           collapsed ? "border-none" : "border-r border-white/6"
-        } bg-transparent transition-all duration-200 overflow-hidden h-screen`}
+        } bg-transparent transition-all duration-200 overflow-hidden`}
       >
         <NavContent collapsed={collapsed} />
       </div>

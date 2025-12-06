@@ -22,6 +22,7 @@ const BaseTemplateContent: React.FC<BaseTemplateProps> = ({
   subtitle,
   children,
 }) => {
+  // テーマコンテキストから現在のモードを取得
   const { mode } = useTheme();
   
   // サイドナビゲーションの折りたたみ状態
@@ -68,21 +69,35 @@ const BaseTemplateContent: React.FC<BaseTemplateProps> = ({
   return (
     <MuiThemeProvider theme={theme}>
       <div className={`min-h-screen flex ${bgClass} ${textClass}`}>
-        {/* サイドナビゲーション（デスクトップ/モバイル両対応） */}
-        <SideNav
-          collapsed={collapsed}
-          mobileOpen={mobileOpen}
-          onClose={() => setMobileOpen(false)}
-        />
+        {/* サイドナビゲーション（デスクトップ/モバイル両対応）*/}
+        <div className="hidden lg:block fixed left-0 top-0 bottom-0 z-50">
+          <SideNav
+            collapsed={collapsed}
+            mobileOpen={mobileOpen}
+            onClose={() => setMobileOpen(false)}
+          />
+        </div>
 
-        <div className="flex-1 flex flex-col">
+        {/* モバイル用サイドナビゲーション */}
+        <div className="lg:hidden">
+          <SideNav
+            collapsed={collapsed}
+            mobileOpen={mobileOpen}
+            onClose={() => setMobileOpen(false)}
+          />
+        </div>
+
+        <div className={`flex-1 flex flex-col ${!collapsed ? "lg:ml-80" : "lg:ml-0"}`}>
           {/* 上部トップバー */}
-          <TopBar onMenuToggle={handleMenuToggle} title={title} />
+          <div className="sticky top-0 z-40 bg-inherit">
+            <TopBar onMenuToggle={handleMenuToggle} />
+          </div>
 
           {/* メインコンテンツ */}
           <main className="flex-1 p-6 lg:p-8">
             <div className="max-w-[1200px] mx-auto">
               {/* タイトルとサブタイトル */}
+              {title || subtitle ? (
               <header className="mb-6">
                 <h1 className="text-2xl font-bold tracking-tight">
                   {title || "Dev Tool Box"}
@@ -97,6 +112,7 @@ const BaseTemplateContent: React.FC<BaseTemplateProps> = ({
                   </p>
                 )}
               </header>
+              ) : null}
 
               {/* コンテンツ */}
               <section
@@ -104,20 +120,13 @@ const BaseTemplateContent: React.FC<BaseTemplateProps> = ({
                   mode === "dark" ? "bg-white/3" : "bg-white/80"
                 } rounded-xl p-6 shadow-xl`}
               >
-                {children ?? (
                   <div
                     className={`py-20 text-center ${
                       mode === "dark" ? "text-gray-300" : "text-gray-700"
                     }`}
                   >
-                    <div className="text-lg font-semibold">
-                      Select a tool from the left
-                    </div>
-                    <div className="mt-2 text-sm">
-                      テキストカウンターやJSONツールなど、左のメニューから選べます。
-                    </div>
+                    {children || "Select a tool from the navigation menu."}
                   </div>
-                )}
               </section>
             </div>
           </main>

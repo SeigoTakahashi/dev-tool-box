@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import type { ReactNode } from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -21,6 +22,8 @@ type NavItemProps = {
   onToggleExpand?: () => void;
   /** ネストレベル（インデント用） */
   level?: number;
+  /** 遷移先のパス */
+  path?: string;
 };
 
 /**
@@ -36,14 +39,28 @@ const NavItem: React.FC<NavItemProps> = ({
   expanded,
   onToggleExpand,
   level = 0,
+  path,
 }) => {
+  // ルーティング用ナビゲート関数
+  const navigate = useNavigate();
+
   // ネストレベルに応じたインデント調整
   const paddingLeft = level > 0 ? `pl-${4 + level * 2}` : "pl-0";
+
+  // クリック時の挙動を定義
+  const handleClick = () => {
+    // 折りたたみ可能な場合は展開状態を切り替え
+    if (collapsible) {
+      onToggleExpand?.();
+    } else if (path) {
+      navigate(path);
+    }
+  };
 
   return (
     // ナビゲーション項目のボタン
     <ListItemButton
-      onClick={collapsible ? onToggleExpand : undefined}
+      onClick={handleClick}
       className={`rounded-md my-1 ${paddingLeft} ${
         active ? "bg-white/6" : "hover:bg-white/3"
       }`}

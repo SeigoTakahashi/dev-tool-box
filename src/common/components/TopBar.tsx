@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -30,11 +31,20 @@ type TopBarProps = {
  * - ダークモード切替スイッチ
  * - アプリアイコン
  */
-const TopBar: React.FC<TopBarProps> = ({ onMenuToggle, title }) => {
+const TopBar: React.FC<TopBarProps> = ({ onMenuToggle }) => {
+  // ルーティング用ナビゲート関数
+  const navigate = useNavigate();
+
+  // テーマコンテキストから現在のモードと切替関数を取得
   const { mode, toggleTheme } = useTheme();
-  
+
   // 検索クエリの状態管理
   const [query] = useState("");
+
+  // タイトルクリック時にホームへ遷移
+  const handleTitleClick = () => {
+    navigate("/");
+  };
 
   return (
     <AppBar position="static" color="transparent" elevation={0}>
@@ -51,9 +61,12 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuToggle, title }) => {
         </IconButton>
 
         {/* タイトル部分 */}
-        <div className="flex items-center gap-3">
+        <div
+          className="flex items-center gap-3 cursor-pointer"
+          onClick={handleTitleClick}
+        >
           <Typography variant="h6" component="div" sx={{ fontWeight: 700 }}>
-            {title || "Dev Tool Box"}
+            Dev Tool Box
           </Typography>
           <Typography
             variant="body2"
@@ -72,12 +85,16 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuToggle, title }) => {
             mode === "dark" ? "bg-white/5" : "bg-black/5"
           } px-3 py-1 rounded-md`}
         >
-          <SearchIcon className={mode === "dark" ? "text-gray-300" : "text-gray-600"} />
+          <SearchIcon
+            className={mode === "dark" ? "text-gray-300" : "text-gray-600"}
+          />
           <InputBase
             placeholder="Search tools..."
             value={query}
             inputProps={{ "aria-label": "search" }}
-            className={`text-sm ${mode === "dark" ? "text-gray-200" : "text-gray-800"}`}
+            className={`text-sm ${
+              mode === "dark" ? "text-gray-200" : "text-gray-800"
+            }`}
             sx={{ ml: 1 }}
           />
         </div>

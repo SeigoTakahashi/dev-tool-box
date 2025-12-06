@@ -29,6 +29,7 @@ export type Tool = {
   id: string;
   label: string;
   icon: ReactNode;
+  path?: string;
 };
 
 export type ToolCategory = {
@@ -48,7 +49,12 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
     label: "Text",
     icon: <TextFieldsIcon />,
     tools: [
-      { id: "text-counter", label: "テキストカウンター", icon: <CodeIcon /> },
+      {
+        id: "text-counter",
+        label: "テキストカウンター",
+        icon: <CodeIcon />,
+        path: "/text/counter",
+      },
       { id: "line-ending", label: "改行コード変換", icon: <ContentCopyIcon /> },
       {
         id: "case-converter",
