@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. ソースコードチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Node.js セットアップ
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      # 3. 依存関係インストール
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Lint
+      - name: Run ESLint
+        run: npm run lint --if-present
+
+      # 5. Test
+      - name: Run Tests
+        run: npm test --if-present
+
+      # 6. Build (本番ビルドが通るかチェック)
+      - name: Build project
+        run: npm run build --if-present
