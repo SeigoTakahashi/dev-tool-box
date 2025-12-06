@@ -47,7 +47,7 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuToggle }) => {
   };
 
   return (
-    <AppBar position="static" color="transparent" elevation={0}>
+    <AppBar position="static" color="transparent" elevation={0} sx={{ zIndex: 1000 }}>
       <Toolbar className="px-4 lg:px-6">
         {/* メニュー開閉ボタン */}
         <IconButton
