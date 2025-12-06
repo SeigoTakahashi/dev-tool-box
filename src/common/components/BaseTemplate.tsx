@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import type { ReactNode } from "react";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeProvider as MuiThemeProvider, createTheme } from "@mui/material/styles";
 
 import TopBar from "./TopBar";
 import SideNav from "./SideNav";
 import Footer from "./Footer";
+import { ThemeProvider, useTheme } from "../context/ThemeContext";
 
 type BaseTemplateProps = {
   title?: string;
@@ -12,34 +13,39 @@ type BaseTemplateProps = {
   children?: ReactNode;
 };
 
-// ダークテーマの定義
-const dark = createTheme({
-  palette: {
-    mode: "dark",
-    primary: { main: "#7c3aed" },
-    background: { default: "#070812", paper: "#0f1724" },
-  },
-  typography: { fontFamily: "Inter, Roboto, Helvetica, Arial, sans-serif" },
-});
-
-/*
- * BaseTemplate コンポーネント
- * アプリケーションの基本的なレイアウトを提供します
- * - 左サイドナビゲーション
- * - 上部トップバー
- * - メインコンテンツエリア
- * - 下部フッター
+/**
+ * BaseTemplateContent コンポーネント
+ * テーマコンテキストを使用する実際のレイアウト
  */
-const BaseTemplate: React.FC<BaseTemplateProps> = ({
+const BaseTemplateContent: React.FC<BaseTemplateProps> = ({
   title,
   subtitle,
   children,
 }) => {
+  const { mode } = useTheme();
+  
   // サイドナビゲーションの折りたたみ状態
   const [collapsed, setCollapsed] = useState(false);
 
   // モバイルでのナビゲーション開閉状態
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  // MUI テーマを動的に生成
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: mode,
+          primary: { main: "#7c3aed" },
+          background:
+            mode === "dark"
+              ? { default: "#070812", paper: "#0f1724" }
+              : { default: "#f5f5f5", paper: "#ffffff" },
+        },
+        typography: { fontFamily: "Inter, Roboto, Helvetica, Arial, sans-serif" },
+      }),
+    [mode]
+  );
 
   // モバイルメニュー開閉ハンドラ
   const handleMenuToggle = () => {
@@ -51,9 +57,17 @@ const BaseTemplate: React.FC<BaseTemplateProps> = ({
     }
   };
 
+  // 背景グラデーション（ダーク/ライトで変更）
+  const bgClass =
+    mode === "dark"
+      ? "bg-gradient-to-b from-[#05060a] via-[#071028] to-[#071428]"
+      : "bg-gradient-to-b from-[#f9fafb] via-[#f3f4f6] to-[#e5e7eb]";
+
+  const textClass = mode === "dark" ? "text-gray-200" : "text-gray-800";
+
   return (
-    <ThemeProvider theme={dark}>
-      <div className="min-h-screen flex bg-linear-to-b from-[#05060a] via-[#071028] to-[#071428] text-gray-200">
+    <MuiThemeProvider theme={theme}>
+      <div className={`min-h-screen flex ${bgClass} ${textClass}`}>
         {/* サイドナビゲーション（デスクトップ/モバイル両対応） */}
         <SideNav
           collapsed={collapsed}
@@ -74,14 +88,28 @@ const BaseTemplate: React.FC<BaseTemplateProps> = ({
                   {title || "Dev Tool Box"}
                 </h1>
                 {subtitle && (
-                  <p className="mt-1 text-sm text-gray-400">{subtitle}</p>
+                  <p
+                    className={`mt-1 text-sm ${
+                      mode === "dark" ? "text-gray-400" : "text-gray-600"
+                    }`}
+                  >
+                    {subtitle}
+                  </p>
                 )}
               </header>
 
               {/* コンテンツ */}
-              <section className="bg-white/3 rounded-xl p-6 shadow-xl">
+              <section
+                className={`${
+                  mode === "dark" ? "bg-white/3" : "bg-white/80"
+                } rounded-xl p-6 shadow-xl`}
+              >
                 {children ?? (
-                  <div className="py-20 text-center text-gray-300">
+                  <div
+                    className={`py-20 text-center ${
+                      mode === "dark" ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  >
                     <div className="text-lg font-semibold">
                       Select a tool from the left
                     </div>
@@ -98,6 +126,19 @@ const BaseTemplate: React.FC<BaseTemplateProps> = ({
           <Footer />
         </div>
       </div>
+    </MuiThemeProvider>
+  );
+};
+
+/**
+ * BaseTemplate コンポーネント
+ * アプリケーションの基本的なレイアウトを提供します
+ * ThemeProvider でラップしてテーマ切り替え機能を提供
+ */
+const BaseTemplate: React.FC<BaseTemplateProps> = (props) => {
+  return (
+    <ThemeProvider>
+      <BaseTemplateContent {...props} />
     </ThemeProvider>
   );
 };

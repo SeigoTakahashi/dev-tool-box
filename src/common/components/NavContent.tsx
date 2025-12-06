@@ -4,6 +4,7 @@ import Divider from "@mui/material/Divider";
 
 import NavItem from "./NavItem";
 import { TOOL_CATEGORIES } from "../data/toolCategories.tsx";
+import { useTheme } from "../context/ThemeContext";
 
 type NavContentProps = {
   /** ナビゲーションが折りたたまれているか */
@@ -18,6 +19,8 @@ type NavContentProps = {
  * - フッター情報
  */
 const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
+  const { mode } = useTheme();
+  
   // アコーディオンの展開状態を管理
   // キー: カテゴリID、値: 展開中かどうか
   const [expandedCategories, setExpandedCategories] = useState<
@@ -36,11 +39,15 @@ const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
     }));
   };
 
+  const bgClass = mode === "dark" ? "bg-[#0f1724]" : "bg-white";
+  const borderClass = mode === "dark" ? "border-white/6" : "border-gray-200";
+  const textSecondaryClass = mode === "dark" ? "text-gray-400" : "text-gray-600";
+
   return (
     <aside
       className={`flex flex-col ${
         collapsed ? "w-0" : "w-80"
-      } h-screen p-3 overflow-y-auto bg-[#0f1724]`}
+      } h-screen p-3 overflow-y-auto ${bgClass}`}
     >
       {/* ロゴ部分 */}
       <div className="flex items-center gap-3 mb-4 px-1">
@@ -51,12 +58,12 @@ const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
         {!collapsed && (
           <div>
             <div className="text-sm font-semibold">Dev Tool Box</div>
-            <div className="text-xs text-gray-400">Handy dev utilities</div>
+            <div className={`text-xs ${textSecondaryClass}`}>Handy dev utilities</div>
           </div>
         )}
       </div>
 
-      <Divider className="my-2 border-white/6" />
+      <Divider className={`my-2 ${borderClass}`} />
 
       {/* ナビゲーション項目リスト（アコーディオン形式） */}
       <nav className="flex-1">
@@ -90,11 +97,11 @@ const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
         </List>
       </nav>
 
-      <Divider className="my-2 border-white/6" />
+      <Divider className={`my-2 ${borderClass}`} />
 
       {/* フッター情報 */}
-      <div className="text-xs text-gray-400 px-1">
-        <div className="mb-1">Theme • Dark</div>
+      <div className={`text-xs ${textSecondaryClass} px-1`}>
+        <div className="mb-1">{mode === "dark" ? "Dark" : "Light"} Mode</div>
       </div>
     </aside>
   );
