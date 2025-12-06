@@ -26,7 +26,7 @@ const SideNav: React.FC<SideNavProps> = ({
     <>
       {/* デスクトップ用サイドナビ（固定位置） */}
       <div
-        className={`hidden lg:flex fixed left-0 top-0 bottom-0 z-50 ${collapsed ? "w-0" : "w-80"} ${
+        className={`hidden lg:flex fixed left-0 top-0 bottom-0 z-1010 ${collapsed ? "w-0" : "w-80"} ${
           collapsed ? "border-none" : "border-r border-white/6"
         } bg-transparent transition-all duration-200 overflow-hidden`}
       >
@@ -35,7 +35,7 @@ const SideNav: React.FC<SideNavProps> = ({
 
       {/* モバイル用オフキャンバスサイドナビ */}
       <div
-        className={`lg:hidden fixed inset-0 z-40 transition-opacity duration-200 ${
+        className={`lg:hidden fixed inset-0 z-1050 transition-opacity duration-200 ${
           mobileOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
