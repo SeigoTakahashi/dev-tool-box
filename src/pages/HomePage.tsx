@@ -27,7 +27,7 @@ export default function HomePage() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              DevToolBox
+              Dev Tool Box
             </Typography>
             <Typography
               variant="h5"
@@ -51,7 +51,7 @@ export default function HomePage() {
                 px: { xs: 2, sm: 3, md: 0 },
               }}
             >
-              DevToolBoxは、Web開発やテキスト処理、データ変換など、日常的な開発業務をサポートする多彩なツールを集めたアプリケーションです。
+              Dev Tool Boxは、Web開発やテキスト処理、データ変換など、日常的な開発業務をサポートする多彩なツールを集めたアプリケーションです。
               複数のツールをワンプレイスで利用でき、効率的な開発ワークフローを実現します。
             </Typography>
           </Box>
