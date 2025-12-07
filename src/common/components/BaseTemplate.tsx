@@ -94,7 +94,7 @@ const BaseTemplateContent: React.FC<BaseTemplateProps> = ({
           </div>
 
           {/* メインコンテンツ */}
-          <main className="flex-1 p-6 lg:p-8">
+          <main className="flex-1 p-4 lg:p-6">
             <div className="max-w-[1200px] mx-auto">
               {/* タイトルとサブタイトル */}
               {title || subtitle ? (
@@ -118,7 +118,7 @@ const BaseTemplateContent: React.FC<BaseTemplateProps> = ({
               <section
                 className={`${
                   mode === "dark" ? "bg-white/3" : "bg-white/80"
-                } rounded-xl p-6 shadow-xl`}
+                } rounded-xl shadow-xl`}
               >
                   <div
                     className={`py-20 text-center ${
