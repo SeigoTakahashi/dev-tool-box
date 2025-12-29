@@ -49,17 +49,11 @@ const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
     navigate("/");
   };
 
-  // テーマに応じたスタイルクラス
-  const bgClass = mode === "dark" ? "bg-[#0f1724]" : "bg-white";
-  const borderClass = mode === "dark" ? "border-white/6" : "border-gray-200";
-  const textSecondaryClass =
-    mode === "dark" ? "text-gray-400" : "text-gray-600";
-
   return (
     <aside
       className={`flex flex-col ${
         collapsed ? "w-0" : "w-80"
-      } h-screen p-3 overflow-y-auto ${bgClass}`}
+      } h-screen p-3 overflow-y-auto`}
     >
       {/* ロゴ部分 */}
       <div
@@ -74,14 +68,14 @@ const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
         {!collapsed && (
           <div>
             <div className="text-sm font-semibold">Dev Tool Box</div>
-            <div className={`text-xs ${textSecondaryClass}`}>
+            <div className="text-xs">
               Handy dev utilities
             </div>
           </div>
         )}
       </div>
 
-      <Divider className={`my-2 ${borderClass}`} />
+      <Divider className="my-2" />
 
       {/* ナビゲーション項目リスト（アコーディオン形式） */}
       <nav className="flex-1">
@@ -116,10 +110,10 @@ const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
         </List>
       </nav>
 
-      <Divider className={`my-2 ${borderClass}`} />
+      <Divider className="my-2" />
 
       {/* フッター情報 */}
-      <div className={`text-xs ${textSecondaryClass} px-1`}>
+      <div className="text-xs px-1">
         <div className="mb-1">{mode === "dark" ? "Dark" : "Light"} Mode</div>
       </div>
     </aside>

@@ -16,6 +16,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 import { useTheme } from "../context/ThemeContext";
 
+
 type TopBarProps = {
   /** トップバーのタイトル（表示がない場合はデフォルト "Dev Tool Box"） */
   title?: string;
@@ -81,20 +82,15 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuToggle }) => {
 
         {/* 検索入力欄（小画面では非表示） */}
         <div
-          className={`hidden sm:flex items-center gap-3 ${
-            mode === "dark" ? "bg-white/5" : "bg-black/5"
-          } px-3 py-1 rounded-md`}
+          className={`hidden sm:flex items-center gap-3 px-3 py-1 rounded-md`}
         >
           <SearchIcon
-            className={mode === "dark" ? "text-gray-300" : "text-gray-600"}
           />
           <InputBase
             placeholder="Search tools..."
             value={query}
             inputProps={{ "aria-label": "search" }}
-            className={`text-sm ${
-              mode === "dark" ? "text-gray-200" : "text-gray-800"
-            }`}
+            className="text-sm"
             sx={{ ml: 1 }}
           />
         </div>
