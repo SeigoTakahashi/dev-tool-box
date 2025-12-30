@@ -13,16 +13,13 @@ type BaseTemplateProps = {
   children?: ReactNode;
 };
 
-/**
- * BaseTemplate コンポーネント
- * テーマコンテキストを使用する実際のレイアウト
- */
+// ベーステンプレートコンポーネント
 const BaseTemplate: React.FC<BaseTemplateProps> = ({
   title,
   subtitle,
   children,
 }) => {
-  // テーマコンテキストから現在のモードを取得
+  // テーマコンテキストから現在のモードを取得し、テーマを生成
   const { mode } = useTheme();
   const theme = getTheme(mode);
 
@@ -43,6 +40,7 @@ const BaseTemplate: React.FC<BaseTemplateProps> = ({
   };
 
   return (
+    // MUIテーマプロバイダでラップすることでテーマを全体適用
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <div className="min-h-screen flex">
@@ -75,7 +73,7 @@ const BaseTemplate: React.FC<BaseTemplateProps> = ({
           </div>
 
           {/* メインコンテンツ */}
-          <main className="flex-1 p-4 lg:p-6">
+          <main className="flex-1 p-4 lg:p-6 overflow-y-auto">
             <div className="max-w-[1200px] mx-auto">
               {/* タイトルとサブタイトル */}
               {title || subtitle ? (
@@ -89,7 +87,7 @@ const BaseTemplate: React.FC<BaseTemplateProps> = ({
 
               {/* コンテンツ */}
               <section className="rounded-xl shadow-xl">
-                <div className="py-20 text-center">
+                <div className="text-center mb-5">
                   {children || "Select a tool from the navigation menu."}
                 </div>
               </section>

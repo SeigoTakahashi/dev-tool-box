@@ -16,22 +16,12 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 import { useTheme } from "../context/ThemeContext";
 
-
 type TopBarProps = {
-  /** トップバーのタイトル（表示がない場合はデフォルト "Dev Tool Box"） */
   title?: string;
-  /** メニュー開閉時のコールバック関数 */
   onMenuToggle: () => void;
 };
 
-/**
- * TopBar コンポーネント
- * アプリケーションのヘッダーバーを提供します
- * - タイトル表示
- * - 検索入力欄
- * - ダークモード切替スイッチ
- * - アプリアイコン
- */
+// トップバーコンポーネント
 const TopBar: React.FC<TopBarProps> = ({ onMenuToggle }) => {
   // ルーティング用ナビゲート関数
   const navigate = useNavigate();
@@ -48,7 +38,16 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuToggle }) => {
   };
 
   return (
-    <AppBar position="static" color="transparent" elevation={0} sx={{ zIndex: 1000 }}>
+    <AppBar
+      position="static"
+      color="transparent"
+      elevation={0}
+      sx={{
+        zIndex: 1000,
+        backgroundColor: mode === "dark" ? "#121212" : "#f5f5f5",
+        borderBottom: mode === "dark" ? "1px solid #333333" : "1px solid #e0e0e0",
+      }}
+    >
       <Toolbar className="px-4 lg:px-6">
         {/* メニュー開閉ボタン */}
         <IconButton
@@ -84,8 +83,7 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuToggle }) => {
         <div
           className={`hidden sm:flex items-center gap-3 px-3 py-1 rounded-md`}
         >
-          <SearchIcon
-          />
+          <SearchIcon />
           <InputBase
             placeholder="Search tools..."
             value={query}

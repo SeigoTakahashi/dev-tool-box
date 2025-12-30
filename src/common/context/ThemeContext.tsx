@@ -5,24 +5,18 @@ import type { ReactNode } from "react";
 type ThemeMode = "dark" | "light";
 
 type ThemeContextType = {
-  /** 現在のテーマモード */
   mode: ThemeMode;
-  /** テーマを切り替える関数 */
   toggleTheme: () => void;
 };
 
+// テーマコンテキストの作成
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 type ThemeProviderProps = {
   children: ReactNode;
 };
 
-/**
- * ThemeProvider コンポーネント
- * アプリケーション全体のテーマ状態を管理します
- * - ダークモード/ライトモードの切り替え
- * - localStorage への永続化
- */
+// テーマプロバイダコンポーネント
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [mode, setMode] = useState<ThemeMode>(() => {
     // 初期値を localStorage から取得、デフォルトはダーク
@@ -49,10 +43,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   );
 };
 
-/**
- * useTheme カスタムフック
- * テーマコンテキストにアクセスします
- */
+// カスタムフックでコンテキストを利用
 export const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
   if (!context) {
