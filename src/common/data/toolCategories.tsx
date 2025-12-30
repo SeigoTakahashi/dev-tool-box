@@ -52,11 +52,17 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         icon: <CodeIcon />,
         path: "/text/counter",
       },
-      { id: "line-ending", label: "改行コード変換", icon: <ContentCopyIcon />, path: "/text/line-ending" },
+      {
+        id: "line-ending",
+        label: "改行コード変換",
+        icon: <ContentCopyIcon />,
+        path: "/text/line-ending",
+      },
       {
         id: "case-converter",
         label: "命名規則変換",
         icon: <AutoFixHighIcon />,
+        path: "/text/case-converter",
       },
       { id: "text-diff", label: "テキスト比較", icon: <CompareArrowsIcon /> },
       {
