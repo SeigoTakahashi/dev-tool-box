@@ -6,9 +6,9 @@ const TextCounterPage = () => {
   return (
     <BaseTemplate
       title="テキストカウンター"
-      subtitle="テキストの文字数、バイト数、単語数をカウントします。"
+      subtitle="テキストの文字数、バイト数、行数をカウントします。"
     >
-      <TextCounter /> 
+      <TextCounter />
     </BaseTemplate>
   );
 };

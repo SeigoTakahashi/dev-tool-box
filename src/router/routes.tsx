@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import HomePage from '../pages/HomePage'
 import TextCounterPage from '../pages/text/TextCounterPage'
+import LineEndingPage from '../pages/text/LineEndingPage'
 
 /**
  * ルート定義の型
@@ -20,6 +21,10 @@ export const TEXT_ROUTES: RouteConfig[] = [
     path: '/text/counter',
     element: <TextCounterPage />,
   },
+  {
+    path: '/text/line-ending',
+    element: <LineEndingPage />,
+  }
 ]
 
 /**

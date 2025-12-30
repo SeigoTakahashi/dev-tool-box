@@ -6,7 +6,10 @@ import {
   Paper,
   Typography,
   Container,
+  Stack,
 } from "@mui/material";
+import CopyButton from "../../../common/components/CopyButton";
+import ClearButton from "../../../common/components/ClearButton";
 
 import {
   charCounter,
@@ -17,6 +20,7 @@ import {
   utf16ByteCounter,
 } from "../utils/text-counter";
 
+// テキストカウンターコンポーネント
 const TextCounter = () => {
   const [text, setText] = useState("");
 
@@ -38,6 +42,14 @@ const TextCounter = () => {
           }}
         />
       </Box>
+      <Stack
+        direction="row"
+        spacing={1}
+        sx={{ display: "flex", justifyContent: "center", mb: 4 }}
+      >
+        <CopyButton text={text} />
+        <ClearButton handleClear={() => setText("")} disabled={!text} />
+      </Stack>
 
       <Grid container spacing={3}>
         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
