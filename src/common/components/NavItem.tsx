@@ -8,29 +8,17 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
 type NavItemProps = {
-  /** ナビゲーション項目のラベル */
   label: string;
-  /** ナビゲーション項目のアイコン */
   icon: ReactNode;
-  /** 現在のアイテムがアクティブか */
   active?: boolean;
-  /** 折りたたみ可能か（子要素を持つかどうか） */
-  collapsible?: boolean;
-  /** 展開状態（collapsible が true の場合に使用） */
-  expanded?: boolean;
-  /** 展開状態の変更時のコールバック */
-  onToggleExpand?: () => void;
-  /** ネストレベル（インデント用） */
-  level?: number;
-  /** 遷移先のパス */
-  path?: string;
+  collapsible?: boolean; // 折りたたみ可能かどうか
+  expanded?: boolean; // 折りたたみが展開中かどうか
+  onToggleExpand?: () => void; // 折りたたみ展開切替時のコールバック
+  level?: number; // ネストレベル（インデント調整用）
+  path?: string; // ナビゲーション先のパス
 };
 
-/**
- * NavItem コンポーネント
- * サイドナビゲーションの1つの項目を表現します
- * カテゴリとして使用する場合はアコーディオン機能が有効になります
- */
+// ナビゲーション項目コンポーネント
 const NavItem: React.FC<NavItemProps> = ({
   label,
   icon,

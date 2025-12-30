@@ -8,17 +8,10 @@ import { TOOL_CATEGORIES } from "../data/toolCategories.tsx";
 import { useTheme } from "../context/ThemeContext";
 
 type NavContentProps = {
-  /** ナビゲーションが折りたたまれているか */
-  collapsed: boolean;
+  collapsed: boolean; // サイドナビゲーションが折りたたまれているかどうか
 };
 
-/**
- * NavContent コンポーネント
- * サイドナビゲーションの内容を表示します
- * - ロゴとアプリ名
- * - ツールカテゴリのアコーディオンメニュー
- * - フッター情報
- */
+// ナビゲーションコンテンツコンポーネント
 const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
   // テーマコンテキストから現在のモードを取得
   const { mode } = useTheme();
@@ -34,9 +27,7 @@ const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
     text: true, // デフォルトで最初のカテゴリは展開状態
   });
 
-  /**
-   * カテゴリの展開状態を切り替える
-   */
+  // カテゴリの展開状態を切り替える関数
   const toggleCategory = (categoryId: string) => {
     setExpandedCategories((prev) => ({
       ...prev,
@@ -68,9 +59,7 @@ const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
         {!collapsed && (
           <div>
             <div className="text-sm font-semibold">Dev Tool Box</div>
-            <div className="text-xs">
-              Handy dev utilities
-            </div>
+            <div className="text-xs">Handy dev utilities</div>
           </div>
         )}
       </div>

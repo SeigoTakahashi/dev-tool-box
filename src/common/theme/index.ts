@@ -1,6 +1,6 @@
-// theme/index.ts
 import { createTheme } from "@mui/material/styles";
 
+// MUIテーマをモードに応じて生成する関数
 export const getTheme = (mode: "light" | "dark") =>
   createTheme({
     palette: {

@@ -3,20 +3,12 @@ import React from "react";
 import NavContent from "./NavContent";
 
 type SideNavProps = {
-  /** ナビゲーションが折りたたまれているか */
   collapsed: boolean;
-  /** モバイルでの開閉状態 */
   mobileOpen?: boolean;
-  /** モバイルで閉じるときのコールバック */
   onClose?: () => void;
 };
 
-/**
- * SideNav コンポーネント
- * アプリケーションの左サイドナビゲーションを提供します
- * - デスクトップ: 固定サイドバー（折りたたみ可能）
- * - モバイル: オフキャンバスメニュー（スライドイン式）
- */
+// サイドナビゲーションコンポーネント
 const SideNav: React.FC<SideNavProps> = ({
   collapsed,
   mobileOpen = false,
@@ -26,7 +18,9 @@ const SideNav: React.FC<SideNavProps> = ({
     <>
       {/* デスクトップ用サイドナビ（固定位置） */}
       <div
-        className={`hidden lg:flex fixed left-0 top-0 bottom-0 z-1010 ${collapsed ? "w-0" : "w-80"} ${
+        className={`hidden lg:flex fixed left-0 top-0 bottom-0 z-1010 ${
+          collapsed ? "w-0" : "w-80"
+        } ${
           collapsed ? "border-none" : "border-r border-white/6"
         } bg-transparent transition-all duration-200 overflow-hidden`}
       >

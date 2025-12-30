@@ -39,10 +39,7 @@ export type ToolCategory = {
   tools: Tool[];
 };
 
-/**
- * 全ツールのカテゴリとツール定義
- * アコーディオンメニューの構造を定義しています
- */
+// ツールカテゴリとそのツール一覧の定義
 export const TOOL_CATEGORIES: ToolCategory[] = [
   {
     id: "text",
