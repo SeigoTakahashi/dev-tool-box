@@ -74,6 +74,7 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         id: "markdown-preview",
         label: "Markdownプレビュー",
         icon: <VisibilityIcon />,
+        path: "/text/markdown-preview",
       },
     ],
   },
