@@ -26,6 +26,7 @@ const TextCounter = () => {
 
   return (
     <Container maxWidth="md">
+      {/* 入力エリア */}
       <Box sx={{ mb: 4 }}>
         <TextField
           fullWidth
@@ -42,6 +43,8 @@ const TextCounter = () => {
           }}
         />
       </Box>
+
+      {/* コピー・クリアボタン */}
       <Stack
         direction="row"
         spacing={1}
@@ -51,7 +54,10 @@ const TextCounter = () => {
         <ClearButton handleClear={() => setText("")} disabled={!text} />
       </Stack>
 
+      {/* カウンター表示エリア */}
       <Grid container spacing={3}>
+
+        {/* 文字数カウンター */}
         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <Paper sx={{ p: 2, textAlign: "center" }}>
             <Typography color="textSecondary" variant="caption" display="block">
@@ -70,6 +76,7 @@ const TextCounter = () => {
           </Paper>
         </Grid>
 
+        {/* 改行除く文字数カウンター */}
         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <Paper sx={{ p: 2, textAlign: "center" }}>
             <Typography color="textSecondary" variant="caption" display="block">
@@ -88,6 +95,7 @@ const TextCounter = () => {
           </Paper>
         </Grid>
 
+        {/* 改行・空白除く文字数カウンター */}
         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <Paper sx={{ p: 2, textAlign: "center" }}>
             <Typography color="textSecondary" variant="caption" display="block">
@@ -106,6 +114,7 @@ const TextCounter = () => {
           </Paper>
         </Grid>
 
+        {/* 行数カウンター */}
         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <Paper sx={{ p: 2, textAlign: "center" }}>
             <Typography color="textSecondary" variant="caption" display="block">
@@ -124,6 +133,7 @@ const TextCounter = () => {
           </Paper>
         </Grid>
 
+        {/* UTF-8バイト数カウンター */}
         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <Paper sx={{ p: 2, textAlign: "center" }}>
             <Typography color="textSecondary" variant="caption" display="block">
@@ -142,6 +152,7 @@ const TextCounter = () => {
           </Paper>
         </Grid>
 
+        {/* UTF-16バイト数カウンター */}
         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <Paper sx={{ p: 2, textAlign: "center" }}>
             <Typography color="textSecondary" variant="caption" display="block">

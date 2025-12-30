@@ -38,6 +38,7 @@ const CaseConverter = () => {
 
   return (
     <Container maxWidth="md">
+      {/* 入力エリア */}
       <Box sx={{ mb: 4 }}>
         <TextField
           fullWidth
@@ -55,6 +56,7 @@ const CaseConverter = () => {
         />
       </Box>
 
+      {/* 変換結果表示 */}
       <Grid container spacing={2}>
         {cases.map(({ name, convert, key }) => {
           const result = text ? convert(text) : "";

@@ -87,7 +87,7 @@ const BaseTemplate: React.FC<BaseTemplateProps> = ({
 
               {/* コンテンツ */}
               <section className="rounded-xl shadow-xl">
-                <div className="text-center mb-5">
+                <div className="text-center py-5">
                   {children || "Select a tool from the navigation menu."}
                 </div>
               </section>
