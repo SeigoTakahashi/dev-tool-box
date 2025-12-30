@@ -64,7 +64,12 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         icon: <AutoFixHighIcon />,
         path: "/text/case-converter",
       },
-      { id: "text-diff", label: "テキスト比較", icon: <CompareArrowsIcon /> },
+      {
+        id: "text-diff",
+        label: "テキスト比較",
+        icon: <CompareArrowsIcon />,
+        path: "/text/text-diff",
+      },
       {
         id: "markdown-preview",
         label: "Markdownプレビュー",

@@ -3,6 +3,7 @@ import HomePage from '../pages/HomePage'
 import TextCounterPage from '../pages/text/TextCounterPage'
 import LineEndingPage from '../pages/text/LineEndingPage'
 import CaseConverterPage from '../pages/text/CaseConverterPage'
+import TextDiffPage from '../pages/text/TextDiffPage'
 
 /**
  * ルート定義の型
@@ -29,7 +30,11 @@ export const TEXT_ROUTES: RouteConfig[] = [
   {
     path: '/text/case-converter',
     element: <CaseConverterPage />,
-  }
+  },
+  {
+    path: '/text/text-diff',
+    element: <TextDiffPage />,
+  },
 ]
 
 /**
