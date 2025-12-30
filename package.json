@@ -18,10 +18,13 @@
     "@tailwindcss/vite": "^4.1.17",
     "diff": "^8.0.2",
     "diff2html": "^3.4.52",
+    "github-markdown-css": "^5.8.1",
     "lucide-react": "^0.555.0",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
+    "react-markdown": "^10.1.0",
     "react-router-dom": "^7.10.1",
+    "remark-gfm": "^4.0.1",
     "tailwindcss": "^4.1.17"
   },
   "devDependencies": {

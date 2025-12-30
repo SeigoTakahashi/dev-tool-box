@@ -4,6 +4,7 @@ import TextCounterPage from '../pages/text/TextCounterPage'
 import LineEndingPage from '../pages/text/LineEndingPage'
 import CaseConverterPage from '../pages/text/CaseConverterPage'
 import TextDiffPage from '../pages/text/TextDiffPage'
+import MarkdownPreviewPage from '../pages/text/MarkdownPreviewPage'
 
 /**
  * ルート定義の型
@@ -34,6 +35,10 @@ export const TEXT_ROUTES: RouteConfig[] = [
   {
     path: '/text/text-diff',
     element: <TextDiffPage />,
+  },
+  {
+    path: '/text/markdown-preview',
+    element: <MarkdownPreviewPage />,
   },
 ]
 
