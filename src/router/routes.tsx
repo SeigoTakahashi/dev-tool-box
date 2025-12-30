@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import HomePage from '../pages/HomePage'
 import TextCounterPage from '../pages/text/TextCounterPage'
 import LineEndingPage from '../pages/text/LineEndingPage'
+import CaseConverterPage from '../pages/text/CaseConverterPage'
 
 /**
  * ルート定義の型
@@ -24,6 +25,10 @@ export const TEXT_ROUTES: RouteConfig[] = [
   {
     path: '/text/line-ending',
     element: <LineEndingPage />,
+  },
+  {
+    path: '/text/case-converter',
+    element: <CaseConverterPage />,
   }
 ]
 

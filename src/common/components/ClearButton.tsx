@@ -6,6 +6,7 @@ type ClearButtonProps = {
   disabled?: boolean;
 };
 
+// クリア用ボタンコンポーネント
 const ClearButton = ({ handleClear, disabled = false }: ClearButtonProps) => {
   return (
     <Button
