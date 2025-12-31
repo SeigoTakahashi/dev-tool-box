@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Box, TextField, Paper, FormControlLabel, Switch } from "@mui/material";
+import { useTheme } from "../../../common/context/ThemeContext";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -8,6 +9,7 @@ import "../../../markdown-style.css"
 
 // Markdownプレビューコンポーネント
 const MarkdownPreview = () => {
+  const { mode, theme } = useTheme();
   const [markdown, setMarkdown] = useState("");
   const [isPreview, setIsPreview] = useState(false);
 
@@ -29,8 +31,8 @@ const MarkdownPreview = () => {
       {/* エリア */}
       {isPreview ? (
         // プレビュー表示
-        <Paper sx={{ p: 2, minHeight: 400, bgcolor: "#f5f5f5", textAlign: "left" }}>
-          <div className="markdown-body">
+        <Paper sx={{ p: 2, minHeight: 400, bgcolor: theme.palette.background.paper, textAlign: "left", color: theme.palette.text.primary }}>
+          <div className={`markdown-body ${mode === "dark" ? "markdown-body-dark" : ""}`}>
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {markdown}
             </ReactMarkdown>

@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { Box, TextField, Button, Grid, Paper } from "@mui/material";
+import { useTheme } from "../../../common/context/ThemeContext";
 import { createTwoFilesPatch } from "diff";
 import { html } from "diff2html";
 import "diff2html/bundles/css/diff2html.min.css";
 
 // テキスト差分比較コンポーネント
 const TextDiff = () => {
+  const { mode } = useTheme();
+
   const [text1, setText1] = useState("");
   const [text2, setText2] = useState("");
   const [diffHtml, setDiffHtml] = useState<string>("");
@@ -26,7 +29,8 @@ const TextDiff = () => {
       drawFileList: false,
       matching: "lines",
       outputFormat: "side-by-side",
-    });
+      colorScheme: mode === "dark" ? "dark" : "light",
+    } as Parameters<typeof html>[1]);
 
     setDiffHtml(diffHtml);
   };
