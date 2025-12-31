@@ -1,11 +1,14 @@
 /* eslint-disable react-refresh/only-export-components */
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useMemo } from "react";
 import type { ReactNode } from "react";
+import type { Theme } from "@mui/material/styles";
+import { getTheme } from "../theme";
 
 type ThemeMode = "dark" | "light";
 
 type ThemeContextType = {
   mode: ThemeMode;
+  theme: Theme;
   toggleTheme: () => void;
 };
 
@@ -32,12 +35,15 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     localStorage.setItem("theme-mode", mode);
   }, [mode]);
 
+  // mode に応じてテーマを生成
+  const theme = useMemo(() => getTheme(mode), [mode]);
+
   const toggleTheme = () => {
     setMode((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
   return (
-    <ThemeContext.Provider value={{ mode, toggleTheme }}>
+    <ThemeContext.Provider value={{ mode, theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

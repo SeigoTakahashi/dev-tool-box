@@ -1,34 +1,111 @@
+/* ベーススタイル */
 .markdown-body {
   font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "メイリオ",
     sans-serif;
   line-height: 1.6;
   padding: 20px;
+  color: inherit;
   background-color: inherit;
 }
 
-/* 見出しのスタイル */
-h1 {
-  color: #333;
+/* 見出し */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  color: inherit;
+  font-weight: 600;
+}
+
+.markdown-body h1 {
   margin-bottom: 20px;
 }
 
-h2 {
-  color: #555;
-  margin-top: 30px;
-  margin-bottom: 10px;
+.markdown-body h2 {
+  margin: 30px 0 10px;
 }
 
-/* リストのスタイル */
-ul {
+/* リスト */
+.markdown-body ul,
+.markdown-body ol {
+  margin-left: 20px;
+  padding-left: 0;
+}
+
+.markdown-body ul {
   list-style-type: disc;
-  margin-left: 20px;
 }
 
-ol {
+.markdown-body ol {
   list-style-type: decimal;
-  margin-left: 20px;
 }
 
-li {
+.markdown-body li {
   margin-bottom: 8px;
+}
+
+/* インラインコード */
+.markdown-body code {
+  font-family: "Fira Code", monospace;
+  color: inherit;
+  background-color: rgba(97, 93, 93, 0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* コードブロック */
+.markdown-body pre {
+  color: inherit;
+  background-color: rgba(108, 104, 104, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  overflow-x: auto;
+  padding: 12px;
+}
+
+.markdown-body pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* テーブル */
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 8px 12px;
+  text-align: left;
+  color: inherit;
+}
+
+.markdown-body th {
+  background-color: rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+}
+
+.markdown-body tr {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* ダークモード用テーブルスタイル */
+.markdown-body-dark table th,
+.markdown-body-dark table td {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+.markdown-body-dark table th {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.markdown-body-dark table tr {
+  background-color: rgba(255, 255, 255, 0.05) !important;
 }

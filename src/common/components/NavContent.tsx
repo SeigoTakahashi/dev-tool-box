@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
-
 import NavItem from "./NavItem";
 import { TOOL_CATEGORIES } from "../data/toolCategories.tsx";
 import { useTheme } from "../context/ThemeContext";
@@ -14,7 +13,7 @@ type NavContentProps = {
 // ナビゲーションコンテンツコンポーネント
 const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
   // テーマコンテキストから現在のモードを取得
-  const { mode } = useTheme();
+  const { mode, theme } = useTheme();
 
   // ルーティング用ナビゲート関数
   const navigate = useNavigate();
@@ -45,6 +44,7 @@ const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
       className={`flex flex-col ${
         collapsed ? "w-0" : "w-80"
       } h-screen p-3 overflow-y-auto`}
+      style={{ backgroundColor: theme.palette.background.default }}
     >
       {/* ロゴ部分 */}
       <div

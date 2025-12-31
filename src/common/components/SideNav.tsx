@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "../context/ThemeContext";
 
 import NavContent from "./NavContent";
 
@@ -14,6 +15,7 @@ const SideNav: React.FC<SideNavProps> = ({
   mobileOpen = false,
   onClose,
 }) => {
+  const { theme } = useTheme();
   return (
     <>
       {/* デスクトップ用サイドナビ（固定位置） */}
@@ -45,9 +47,10 @@ const SideNav: React.FC<SideNavProps> = ({
 
         {/* スライドインパネル */}
         <div
-          className={`absolute inset-y-0 left-0 w-80 transform bg-[#0f1724] transition-transform duration-200 ${
+          className={`absolute inset-y-0 left-0 w-80 transform transition-transform duration-200 ${
             mobileOpen ? "translate-x-0" : "-translate-x-full"
           }`}
+          style={{ backgroundColor: theme.palette.background.default }}
         >
           <NavContent collapsed={false} />
         </div>

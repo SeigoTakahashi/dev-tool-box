@@ -5,7 +5,6 @@ import SideNav from "./SideNav";
 import Footer from "./Footer";
 import { ThemeProvider as MuiThemeProvider, CssBaseline } from "@mui/material";
 import { useTheme } from "../context/ThemeContext";
-import { getTheme } from "../theme";
 
 type BaseTemplateProps = {
   title?: string;
@@ -19,9 +18,8 @@ const BaseTemplate: React.FC<BaseTemplateProps> = ({
   subtitle,
   children,
 }) => {
-  // テーマコンテキストから現在のモードを取得し、テーマを生成
-  const { mode } = useTheme();
-  const theme = getTheme(mode);
+  // テーマコンテキストから現在のモードとテーマを取得
+  const { theme } = useTheme();
 
   // サイドナビゲーションの折りたたみ状態
   const [collapsed, setCollapsed] = useState(false);
@@ -78,10 +76,12 @@ const BaseTemplate: React.FC<BaseTemplateProps> = ({
               {/* タイトルとサブタイトル */}
               {title || subtitle ? (
                 <header className="mb-6">
-                  <h1 className="text-2xl font-bold tracking-tight">
+                  <h1 className="text-2xl font-bold" style={{ color: theme.palette.text.primary }}>
                     {title || "Dev Tool Box"}
                   </h1>
-                  {subtitle && <p className="mt-1 text-sm">{subtitle}</p>}
+                  <p className="mt-1 text-sm" style={{ color: theme.palette.text.secondary }}>
+                    {subtitle}
+                  </p>
                 </header>
               ) : null}
 
