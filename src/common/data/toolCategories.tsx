@@ -95,7 +95,12 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         icon: <CheckCircleIcon />,
         path: "/json/validator",
       },
-      { id: "json-to-csv", label: "JSON → CSV 変換", icon: <StorageIcon /> },
+      {
+        id: "json-to-csv",
+        label: "JSON → CSV 変換",
+        icon: <StorageIcon />,
+        path: "/json/json-to-csv",
+      },
       { id: "csv-to-json", label: "CSV → JSON 変換", icon: <StorageIcon /> },
     ],
   },

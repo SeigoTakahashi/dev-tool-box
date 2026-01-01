@@ -43,11 +43,7 @@ const JsonValidator = () => {
         {/* 出力エリア */}
         {isValid !== null && (
           <Box sx={{ display: "flex", justifyContent: "center", pb: 3 }}>
-            {isValid ? (
-              <Alert severity="success">有効なJSONです。</Alert>
-            ) : (
-              <Alert severity="error">無効なJSONです。</Alert>
-            )}
+              <Alert severity={isValid ? "success" : "error"}>{isValid ? "有効なJSONです。" : "無効なJSONです。"}</Alert>
           </Box>
         )}
       </Stack>
