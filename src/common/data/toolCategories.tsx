@@ -83,7 +83,12 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
     label: "JSON",
     icon: <DescriptionIcon />,
     tools: [
-      { id: "json-formatter", label: "JSONフォーマッタ", icon: <CodeIcon /> },
+      {
+        id: "json-formatter",
+        label: "JSONフォーマッタ",
+        icon: <CodeIcon />,
+        path: "/json/formatter",
+      },
       {
         id: "json-validator",
         label: "JSONバリデータ",

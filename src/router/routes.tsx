@@ -1,19 +1,20 @@
-import type { ReactNode } from 'react'
-import HomePage from '../pages/HomePage'
-import TextCounterPage from '../pages/text/TextCounterPage'
-import LineEndingPage from '../pages/text/LineEndingPage'
-import CaseConverterPage from '../pages/text/CaseConverterPage'
-import TextDiffPage from '../pages/text/TextDiffPage'
-import MarkdownPreviewPage from '../pages/text/MarkdownPreviewPage'
+import type { ReactNode } from "react";
+import HomePage from "../pages/HomePage";
+import TextCounterPage from "../pages/text/TextCounterPage";
+import LineEndingPage from "../pages/text/LineEndingPage";
+import CaseConverterPage from "../pages/text/CaseConverterPage";
+import TextDiffPage from "../pages/text/TextDiffPage";
+import MarkdownPreviewPage from "../pages/text/MarkdownPreviewPage";
+import JsonFormatterPage from "../pages/json/JsonFormatterPage";
 
 /**
  * ルート定義の型
  */
 export type RouteConfig = {
-  path: string
-  element: ReactNode
-  children?: RouteConfig[]
-}
+  path: string;
+  element: ReactNode;
+  children?: RouteConfig[];
+};
 
 /**
  * グループ化されたルート定義
@@ -21,34 +22,42 @@ export type RouteConfig = {
  */
 export const TEXT_ROUTES: RouteConfig[] = [
   {
-    path: '/text/counter',
+    path: "/text/counter",
     element: <TextCounterPage />,
   },
   {
-    path: '/text/line-ending',
+    path: "/text/line-ending",
     element: <LineEndingPage />,
   },
   {
-    path: '/text/case-converter',
+    path: "/text/case-converter",
     element: <CaseConverterPage />,
   },
   {
-    path: '/text/text-diff',
+    path: "/text/text-diff",
     element: <TextDiffPage />,
   },
   {
-    path: '/text/markdown-preview',
+    path: "/text/markdown-preview",
     element: <MarkdownPreviewPage />,
   },
-]
+];
+
+export const JSON_ROUTES: RouteConfig[] = [
+  {
+    path: "/json/formatter",
+    element: <JsonFormatterPage />,
+  },
+];
 
 /**
  * 全ルート定義
  */
 export const ALL_ROUTES: RouteConfig[] = [
   {
-    path: '/',
+    path: "/",
     element: <HomePage />,
   },
   ...TEXT_ROUTES,
-]
+  ...JSON_ROUTES,
+];
