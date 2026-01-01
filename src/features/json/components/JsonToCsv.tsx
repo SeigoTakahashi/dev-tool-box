@@ -14,66 +14,52 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import AddIcon from '@mui/icons-material/Add';
-import DownloadIcon from '@mui/icons-material/Download';
+import AddIcon from "@mui/icons-material/Add";
+import DownloadIcon from "@mui/icons-material/Download";
 import { validateJson } from "../utils/json-validator";
 import { jsonToCsv } from "../utils/json-to-csv";
+import { downloadFile } from "../../../common/utils/downloadFile";
+import { readFileFromInput } from "../../../common/utils/readFileFromInput";
 
 import { useTheme } from "../../../common/context/ThemeContext";
 
 // JSONからCSVへの変換コンポーネント
 const JsonToCsv = () => {
   const { theme } = useTheme();
- 
+
   const [inputText, setInputText] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const isValid = inputText ? validateJson(inputText).ok : null;
+  // JSONの検証結果
+  const validation = useMemo(() => {
+    return inputText ? validateJson(inputText) : null;
+  }, [inputText]);
 
   // JSONをCSVに変換
   const csvResult = useMemo(() => {
-    if (!isValid) return null;
-    console.log(jsonToCsv(inputText));
+    if (!validation?.ok) return null;
     return jsonToCsv(inputText);
-  }, [inputText, isValid]);
+  }, [inputText, validation]);
 
-  // CSVデータのテーブル表示用データ作成
+  // CSVデータを取得
   const csvData = csvResult?.ok ? csvResult.value : null;
+  
+  // CSVデータのテーブル表示用データ作成
   const tableData = useMemo(() => {
     if (!csvData) return null;
     const lines = csvData.split("\n");
     if (lines.length === 0) return null;
     const headers = lines[0].split(",");
-    const rows = lines.slice(1).map(line => line.split(","));
+    const rows = lines.slice(1).map((line) => line.split(","));
     return { headers, rows };
   }, [csvData]);
 
   // ファイル選択ハンドラ
-  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const content = e.target?.result as string;
-        setInputText(content);
-      };
-      reader.readAsText(file);
-    }
-  };
-
-  // CSVダウンロードハンドラ
-  const handleDownloadCsv = () => {
-    if (!csvData) return;
-    const element = document.createElement("a");
-    element.setAttribute(
-      "href",
-      `data:text/csv;charset=utf-8,${encodeURIComponent(csvData)}`
-    );
-    element.setAttribute("download", "data.csv");
-    element.style.display = "none";
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+  const handleFileSelect = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const content = await readFileFromInput(event);
+    setInputText(content);
   };
 
   return (
@@ -81,7 +67,11 @@ const JsonToCsv = () => {
       <Stack spacing={3} sx={{ width: "100%", maxWidth: 900 }}>
         {/* JSONファイル読み込みボタン */}
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Button variant="contained" size="large" onClick={() => fileInputRef.current?.click()}>
+          <Button
+            variant="contained"
+            size="large"
+            onClick={() => fileInputRef.current?.click()}
+          >
             <AddIcon sx={{ mr: 1 }} />
             JSONファイルを選択
           </Button>
@@ -111,22 +101,30 @@ const JsonToCsv = () => {
           />
         </Box>
 
-        {/* 出力エリア */}
-        {isValid !== null && !isValid && (
+        {/* JSON検証エラー表示エリア */}
+        {validation && !validation.ok && (
           <Box sx={{ display: "flex", justifyContent: "center", pb: 3 }}>
-            <Alert severity="error">無効なJSONです。</Alert>
+            <Alert severity="error">{validation.error}</Alert>
+          </Box>
+        )}
+
+        {/* CSV変換エラー表示エリア */}
+        {csvResult?.ok === false && csvResult.error && (
+          <Box sx={{ display: "flex", justifyContent: "center", pb: 3 }}>
+            <Alert severity="error">{csvResult.error}</Alert>
           </Box>
         )}
 
         {/* CSV表示エリア */}
         {csvResult?.ok && tableData && (
           <>
-
             {/* テーブルプレビュー */}
             <TableContainer component={Paper}>
               <Table>
                 <TableHead>
-                  <TableRow sx={{ backgroundColor: theme.palette.background.paper }}>
+                  <TableRow
+                    sx={{ backgroundColor: theme.palette.background.paper }}
+                  >
                     {tableData.headers.map((header, index) => (
                       <TableCell key={index} sx={{ fontWeight: "bold" }}>
                         {header}
@@ -151,7 +149,9 @@ const JsonToCsv = () => {
               <Button
                 variant="contained"
                 color="success"
-                onClick={handleDownloadCsv}
+                onClick={() => {
+                  downloadFile(csvData, "data.csv", "text/csv");
+                }}
                 size="large"
               >
                 <DownloadIcon sx={{ mr: 1 }} />
@@ -159,12 +159,6 @@ const JsonToCsv = () => {
               </Button>
             </Box>
           </>
-        )}
-
-        {csvResult?.ok === false && csvResult.error && (
-          <Box sx={{ display: "flex", justifyContent: "center", pb: 3 }}>
-            <Alert severity="error">{csvResult.error}</Alert>
-          </Box>
         )}
       </Stack>
     </Box>

@@ -8,9 +8,10 @@ export const validateJson = (input: string): ValidateJsonResult => {
     JSON.parse(input);
     return { ok: true };
   } catch (e) {
+    console.error(e);
     return {
       ok: false,
-      error: e instanceof Error ? e.message : "Invalid JSON",
+      error: "無効なJSON形式です。",
     };
   }
 };

@@ -8,6 +8,7 @@ import MarkdownPreviewPage from "../pages/text/MarkdownPreviewPage";
 import JsonFormatterPage from "../pages/json/JsonFormatterPage";
 import JsonValidatorPage from "../pages/json/JsonValidatorPage";
 import JsonToCsvPage from "../pages/json/JsonToCsvPage";
+import CsvToJsonPage from "../pages/json/CsvToJsonPage";
 
 /**
  * ルート定義の型
@@ -58,6 +59,10 @@ export const JSON_ROUTES: RouteConfig[] = [
     path: "/json/json-to-csv",
     element: <JsonToCsvPage />,
   },
+  {
+    path: "/json/csv-to-json",
+    element: <CsvToJsonPage />,
+  }
 ];
 
 /**

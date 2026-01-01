@@ -101,7 +101,12 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         icon: <StorageIcon />,
         path: "/json/json-to-csv",
       },
-      { id: "csv-to-json", label: "CSV → JSON 変換", icon: <StorageIcon /> },
+      {
+        id: "csv-to-json",
+        label: "CSV → JSON 変換",
+        icon: <StorageIcon />,
+        path: "/json/csv-to-json",
+      },
     ],
   },
   {

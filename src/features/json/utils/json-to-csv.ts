@@ -1,3 +1,5 @@
+import { validateJson } from "./json-validator";
+
 export type JsonToCsvResult =
   | { ok: true; value: string }
   | { ok: false; error: string };
@@ -13,6 +15,12 @@ export const escapeCsvValue = (value: string): string => {
 // JSON文字列をCSV形式に変換する関数
 export const jsonToCsv = (input: string): JsonToCsvResult => {
   try {
+    // JSON バリデーション
+    const validation = validateJson(input);
+    if (!validation.ok) {
+      return validation;
+    }
+
     const data = JSON.parse(input);
 
     if (!Array.isArray(data)) {
@@ -46,9 +54,10 @@ export const jsonToCsv = (input: string): JsonToCsvResult => {
       value: [headers.join(","), ...rows].join("\n"),
     };
   } catch (e) {
+    console.error(e);
     return {
       ok: false,
-      error: e instanceof Error ? e.message : "Invalid JSON",
+      error: "CSVへの変換に失敗しました。",
     };
   }
 };
