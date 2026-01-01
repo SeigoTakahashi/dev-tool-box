@@ -5,7 +5,7 @@ import JsonToCsv from "../../features/json/components/JsonToCsv";
 const JsonToCsvPage = () => {
   return (
     <BaseTemplate
-      title="JSONからCSVへの変換"
+      title="JSON → CSV 変換"
       subtitle="JSONデータをCSV形式に変換します。"
     >
       <JsonToCsv />

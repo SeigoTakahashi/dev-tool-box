@@ -12,9 +12,10 @@ export const formatJsonSafe = (
     const formatted = JSON.stringify(parsed, null, space);
     return { ok: true, value: formatted };
   } catch (e) {
+    console.error(e);
     return {
       ok: false,
-      error: e instanceof Error ? e.message : "Invalid JSON",
+      error: "無効なJSON形式です。",
     };
   }
 };

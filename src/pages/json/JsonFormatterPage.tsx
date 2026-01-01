@@ -5,7 +5,7 @@ import JsonFormatter from "../../features/json/components/JsonFormatter";
 const JsonFormatterPage = () => {
   return (
     <BaseTemplate
-      title="JSONフォーマット"
+      title="JSONフォーマッタ"
       subtitle="JSONデータのフォーマットを行います。"
     >
       <JsonFormatter />
