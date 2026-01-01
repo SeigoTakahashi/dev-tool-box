@@ -7,6 +7,7 @@ import TextDiffPage from "../pages/text/TextDiffPage";
 import MarkdownPreviewPage from "../pages/text/MarkdownPreviewPage";
 import JsonFormatterPage from "../pages/json/JsonFormatterPage";
 import JsonValidatorPage from "../pages/json/JsonValidatorPage";
+import JsonToCsvPage from "../pages/json/JsonToCsvPage";
 
 /**
  * ルート定義の型
@@ -52,7 +53,11 @@ export const JSON_ROUTES: RouteConfig[] = [
   {
     path: "/json/validator",
     element: <JsonValidatorPage />,
-  }
+  },
+  {
+    path: "/json/json-to-csv",
+    element: <JsonToCsvPage />,
+  },
 ];
 
 /**
