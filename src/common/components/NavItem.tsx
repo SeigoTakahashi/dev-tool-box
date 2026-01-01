@@ -49,8 +49,10 @@ const NavItem: React.FC<NavItemProps> = ({
     // ナビゲーション項目のボタン
     <ListItemButton
       onClick={handleClick}
-      className={`rounded-md my-1 ${paddingLeft} ${
-        active ? "bg-white/6" : "hover:bg-white/3"
+      className={`rounded-md my-1 ${paddingLeft} transition-colors ${
+        active
+          ? "bg-white/10 text-white font-semibold"
+          : "text-gray-300 hover:bg-white/5"
       }`}
       sx={{ pl: level > 0 ? `${1 + level * 1.5}rem` : undefined }}
     >

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import NavItem from "./NavItem";
@@ -18,12 +18,30 @@ const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
   // ルーティング用ナビゲート関数
   const navigate = useNavigate();
 
+  // 現在のパスを取得
+  const location = useLocation();
+
+  // 現在のカテゴリを取得（パスから）
+  const getCurrentCategory = () => {
+    const pathSegments = location.pathname.split("/");
+    return pathSegments[1] || "";
+  };
+
+  // 現在のツール路径を取得
+  const isCurrentPath = (path?: string) => {
+    return path === location.pathname;
+  };
+
   // アコーディオンの展開状態を管理
   // キー: カテゴリID、値: 展開中かどうか
   const [expandedCategories, setExpandedCategories] = useState<
     Record<string, boolean>
-  >({
-    text: true, // デフォルトで最初のカテゴリは展開状態
+  >(() => {
+    // 初期化時に、現在のカテゴリを自動的に展開
+    const currentCategory = getCurrentCategory();
+    return {
+      ...(currentCategory && { [currentCategory]: true }),
+    };
   });
 
   // カテゴリの展開状態を切り替える関数
@@ -90,6 +108,7 @@ const NavContent: React.FC<NavContentProps> = ({ collapsed }) => {
                       icon={tool.icon}
                       level={1}
                       path={tool.path}
+                      active={isCurrentPath(tool.path)}
                     />
                   ))}
                 </div>
