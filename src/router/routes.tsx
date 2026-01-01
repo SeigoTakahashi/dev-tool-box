@@ -6,6 +6,7 @@ import CaseConverterPage from "../pages/text/CaseConverterPage";
 import TextDiffPage from "../pages/text/TextDiffPage";
 import MarkdownPreviewPage from "../pages/text/MarkdownPreviewPage";
 import JsonFormatterPage from "../pages/json/JsonFormatterPage";
+import JsonValidatorPage from "../pages/json/JsonValidatorPage";
 
 /**
  * ルート定義の型
@@ -48,6 +49,10 @@ export const JSON_ROUTES: RouteConfig[] = [
     path: "/json/formatter",
     element: <JsonFormatterPage />,
   },
+  {
+    path: "/json/validator",
+    element: <JsonValidatorPage />,
+  }
 ];
 
 /**
