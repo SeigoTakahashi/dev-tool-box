@@ -1,7 +1,5 @@
-import type { LineEndingType } from "../../types";
-
 // 改行コード正規化ユーティリティ
-export const normalizeLineEnding = (text: string, to: LineEndingType): string => {
+export const normalizeLineEnding = (text: string, to: "lf" | "crlf" | "cr"): string => {
   // 一旦LFに統一
   const normalized = text.replace(/\r\n|\r|\n/g, "\n");
 

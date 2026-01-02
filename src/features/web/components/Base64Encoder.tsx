@@ -12,11 +12,11 @@ import {
   FormControlLabel,
 } from "@mui/material";
 
-import { encodeUrl } from "../utils/url-encoder";
-import { decodeUrl } from "../utils/url-decoder";
+import { encodeBase64 } from "../utils/base64-encoder";
+import { decodeBase64 } from "../utils/base64-decoder";
 
-// URLエンコード・デコードコンポーネント
-const UrlEncoder = () => {
+// Base64エンコード・デコードコンポーネント
+const Base64Encoder = () => {
   const [mode, setMode] = useState<"encode" | "decode">("encode");
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
@@ -25,9 +25,11 @@ const UrlEncoder = () => {
   const handleConvert = () => {
     let output = "";
     if (mode === "encode") {
-      output = encodeUrl(inputText);
+      const result = encodeBase64(inputText);
+      output = result.ok ? result.value : `エラー: ${result.error}`;
     } else {
-      output = decodeUrl(inputText);
+      const result = decodeBase64(inputText);
+      output = result.ok ? result.value : `エラー: ${result.error}`;
     }
     setOutputText(output);
   };
@@ -51,12 +53,12 @@ const UrlEncoder = () => {
               <FormControlLabel
                 value="encode"
                 control={<Radio />}
-                label="エンコード（例：あ → %E3%81%82）"
+                label="エンコード（例：あ → 44GC）"
               />
               <FormControlLabel
                 value="decode"
                 control={<Radio />}
-                label="デコード（例：%E3%81%82 → あ）"
+                label="デコード（例：44GC → あ）"
               />
             </RadioGroup>
           </FormControl>
@@ -105,4 +107,4 @@ const UrlEncoder = () => {
   );
 };
 
-export default UrlEncoder;
+export default Base64Encoder;

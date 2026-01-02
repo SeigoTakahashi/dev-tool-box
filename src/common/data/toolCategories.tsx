@@ -124,6 +124,7 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         id: "base64-encoder",
         label: "Base64エンコード・デコード",
         icon: <ContentCopyIcon />,
+        path: "/web/base64-encoder",
       },
       { id: "regex-tester", label: "正規表現テスター", icon: <CodeIcon /> },
       {
