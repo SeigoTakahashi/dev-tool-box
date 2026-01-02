@@ -9,6 +9,7 @@ import JsonFormatterPage from "../pages/json/JsonFormatterPage";
 import JsonValidatorPage from "../pages/json/JsonValidatorPage";
 import JsonToCsvPage from "../pages/json/JsonToCsvPage";
 import CsvToJsonPage from "../pages/json/CsvToJsonPage";
+import UrlEncoderPage from "../pages/web/UrlEncoderPage";
 
 /**
  * ルート定義の型
@@ -65,6 +66,13 @@ export const JSON_ROUTES: RouteConfig[] = [
   }
 ];
 
+export const WEB_ROUTES: RouteConfig[] = [
+  {
+    path: "/web/url-encoder",
+    element: <UrlEncoderPage />,
+  },
+];
+
 /**
  * 全ルート定義
  */
@@ -75,4 +83,5 @@ export const ALL_ROUTES: RouteConfig[] = [
   },
   ...TEXT_ROUTES,
   ...JSON_ROUTES,
+  ...WEB_ROUTES,
 ];

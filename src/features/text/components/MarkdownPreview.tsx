@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Box, TextField, Paper, FormControlLabel, Switch } from "@mui/material";
 import { useTheme } from "../../../common/context/ThemeContext";
+import { MARKDOWN_SAMPLE } from "../../../common/data/markdown-sample";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -10,7 +11,7 @@ import "../../../markdown-style.css"
 // Markdownプレビューコンポーネント
 const MarkdownPreview = () => {
   const { mode, theme } = useTheme();
-  const [markdown, setMarkdown] = useState("");
+  const [markdown, setMarkdown] = useState(MARKDOWN_SAMPLE);
   const [isPreview, setIsPreview] = useState(false);
 
   return (

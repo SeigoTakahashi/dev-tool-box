@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   Box,
   Button,
-  Divider,
   FormControlLabel,
   Radio,
   RadioGroup,
@@ -29,17 +28,17 @@ const LineEnding = () => {
   };
 
   return (
-    <Box sx={{ p: 3, display: "flex", justifyContent: "center" }}>
+    <Box sx={{ p: 2, display: "flex", justifyContent: "center" }}>
       <Stack spacing={0} sx={{ width: "100%", maxWidth: 900 }}>
         {/* 入力エリア */}
         <Box sx={{ textAlign: "center", pb: 3 }}>
-          <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2 }}>
+          <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
             入力
           </Typography>
           <TextField
             fullWidth
             multiline
-            rows={8}
+            rows={6}
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder="ここに改行コードを変換したいテキストを入力してください"
@@ -47,15 +46,10 @@ const LineEnding = () => {
           />
         </Box>
 
-        <Divider sx={{ my: 3 }} />
-
         {/* 変換設定 */}
-        <Box sx={{ textAlign: "center", pb: 3 }}>
-          <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2 }}>
-            変換設定
-          </Typography>
-          <Typography variant="body2" sx={{ mb: 2 }}>
-            出力の改行コード:
+        <Box sx={{ textAlign: "center", pb: 2 }}>
+          <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+            出力の改行コード設定
           </Typography>
           <RadioGroup
             value={lineEndingType}
@@ -81,7 +75,7 @@ const LineEnding = () => {
         </Box>
 
         {/* 変換ボタン */}
-        <Box sx={{ display: "flex", justifyContent: "center", py: 3 }}>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Button
             variant="contained"
             size="large"
@@ -94,7 +88,7 @@ const LineEnding = () => {
 
         {/* 出力エリア */}
         <Box sx={{ textAlign: "center", pt: 3 }}>
-          <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2 }}>
+          <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
             出力
           </Typography>
           <TextField

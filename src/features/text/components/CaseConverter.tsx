@@ -44,7 +44,7 @@ const CaseConverter = () => {
           fullWidth
           multiline
           rows={8}
-          placeholder="ここにテキストを入力してください..."
+          placeholder="ここにテキストを入力してください...（例：HelloWorld）"
           value={text}
           onChange={(e) => setText(e.target.value)}
           variant="outlined"
