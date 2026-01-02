@@ -13,13 +13,11 @@ import CopyButton from "../../../common/components/CopyButton";
 import ClearButton from "../../../common/components/ClearButton";
 import { normalizeLineEnding } from "../utils/line-ending";
 
-import type { LineEndingType } from "../../types";
-
 // 改行コード変換コンポーネント
 const LineEnding = () => {
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
-  const [lineEndingType, setLineEndingType] = useState<LineEndingType>("lf");
+  const [lineEndingType, setLineEndingType] = useState<"lf" | "crlf" | "cr">("lf");
 
   // 改行コード変換処理
   const handleConvert = () => {
@@ -54,7 +52,7 @@ const LineEnding = () => {
           <RadioGroup
             value={lineEndingType}
             onChange={(e) =>
-              setLineEndingType(e.target.value as LineEndingType)
+              setLineEndingType(e.target.value as "lf" | "crlf" | "cr")
             }
             sx={{
               display: "flex",

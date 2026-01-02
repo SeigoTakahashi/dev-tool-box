@@ -1,1 +1,0 @@
-export type LineEndingType = "lf" | "crlf" | "cr";
