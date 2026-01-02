@@ -118,6 +118,7 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         id: "url-encoder",
         label: "URLエンコード・デコード",
         icon: <HttpIcon />,
+        path: "/web/url-encoder",
       },
       {
         id: "base64-encoder",

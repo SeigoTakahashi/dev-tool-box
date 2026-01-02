@@ -9,8 +9,12 @@ import "diff2html/bundles/css/diff2html.min.css";
 const TextDiff = () => {
   const { mode } = useTheme();
 
-  const [text1, setText1] = useState("");
-  const [text2, setText2] = useState("");
+  const [text1, setText1] = useState(
+    "The quick brown fox jumps over the lazy dog."
+  );
+  const [text2, setText2] = useState(
+    "The quick brown fox jumped over a lazy dog."
+  );
   const [diffHtml, setDiffHtml] = useState<string>("");
 
   const handleCompare = () => {
@@ -36,7 +40,7 @@ const TextDiff = () => {
   };
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ p: 2 }}>
       {/* 入力エリア */}
       <Grid container spacing={2} sx={{ mb: 3 }}>
         <Grid size={{ xs: 12, sm: 6 }}>
@@ -69,16 +73,18 @@ const TextDiff = () => {
       </Box>
 
       {/* 結果表示 */}
-      <Grid container spacing={2}>
-        <Grid size={{ xs: 12 }}>
-          <Paper sx={{ p: 2, minHeight: 300 }}>
-            <div
-              className="diff-container"
-              dangerouslySetInnerHTML={{ __html: diffHtml }}
-            />
-          </Paper>
+      {diffHtml && (
+        <Grid container spacing={2}>
+          <Grid size={{ xs: 12 }}>
+            <Paper sx={{ p: 2, minHeight: 300 }}>
+              <div
+                className="diff-container"
+                dangerouslySetInnerHTML={{ __html: diffHtml }}
+              />
+            </Paper>
+          </Grid>
         </Grid>
-      </Grid>
+      )}
     </Box>
   );
 };
