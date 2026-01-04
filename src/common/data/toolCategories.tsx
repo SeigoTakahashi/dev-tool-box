@@ -126,7 +126,12 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         icon: <ContentCopyIcon />,
         path: "/web/base64-encoder",
       },
-      { id: "regex-tester", label: "正規表現テスター", icon: <CodeIcon /> },
+      {
+        id: "regex-tester",
+        label: "正規表現テスター",
+        icon: <CodeIcon />,
+        path: "/web/regex-tester",
+      },
       {
         id: "cron-generator",
         label: "Cron式ジェネレーター",
