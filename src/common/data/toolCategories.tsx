@@ -142,6 +142,7 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         id: "hash-generator",
         label: "ハッシュ生成器",
         icon: <FingerprintIcon />,
+        path: "/web/hash-generator",
       },
     ],
   },
