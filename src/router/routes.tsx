@@ -13,6 +13,7 @@ import UrlEncoderPage from "../pages/web/UrlEncoderPage";
 import Base64EncoderPage from "../pages/web/Base64EncoderPage";
 import RegexTesterPage from "../pages/web/RegexTesterPage";
 import CronGeneratorPage from "../pages/web/CronGeneratorPage";
+import HashGeneratorPage from "../pages/web/HashGeneratorPage";
 
 /**
  * ルート定義の型
@@ -85,6 +86,10 @@ export const WEB_ROUTES: RouteConfig[] = [
   {
     path: "/web/cron-generator",
     element: <CronGeneratorPage />,
+  },
+  {
+    path: "/web/hash-generator",
+    element: <HashGeneratorPage />,
   }
 ];
 
