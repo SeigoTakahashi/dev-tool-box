@@ -26,3 +26,23 @@ export const REGEX_PATTERNS = [
   { pattern: "(abc)", description: "グループ化" },
   { pattern: "a|b", description: "aまたはb" },
 ];
+
+export const DAY_LABELS = {
+  monday: "月",
+  tuesday: "火",
+  wednesday: "水",
+  thursday: "木",
+  friday: "金",
+  saturday: "土",
+  sunday: "日",
+};
+
+export const DAY_TO_CRON: Record<string, number> = {
+  sunday: 0,
+  monday: 1,
+  tuesday: 2,
+  wednesday: 3,
+  thursday: 4,
+  friday: 5,
+  saturday: 6,
+};

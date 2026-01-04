@@ -136,6 +136,7 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         id: "cron-generator",
         label: "Cron式ジェネレーター",
         icon: <ScheduleIcon />,
+        path: "/web/cron-generator",
       },
       {
         id: "hash-generator",
