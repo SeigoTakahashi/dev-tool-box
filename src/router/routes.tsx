@@ -14,20 +14,16 @@ import Base64EncoderPage from "../pages/web/Base64EncoderPage";
 import RegexTesterPage from "../pages/web/RegexTesterPage";
 import CronGeneratorPage from "../pages/web/CronGeneratorPage";
 import HashGeneratorPage from "../pages/web/HashGeneratorPage";
+import ColorConverterPage from "../pages/color/ColorConverterPage";
 
-/**
- * ルート定義の型
- */
+// ルート定義の型
 export type RouteConfig = {
   path: string;
   element: ReactNode;
   children?: RouteConfig[];
 };
 
-/**
- * グループ化されたルート定義
- * カテゴリ別にルートを管理
- */
+// テキストツール関連のルート定義
 export const TEXT_ROUTES: RouteConfig[] = [
   {
     path: "/text/counter",
@@ -51,6 +47,7 @@ export const TEXT_ROUTES: RouteConfig[] = [
   },
 ];
 
+// JSONツール関連のルート定義
 export const JSON_ROUTES: RouteConfig[] = [
   {
     path: "/json/formatter",
@@ -70,6 +67,7 @@ export const JSON_ROUTES: RouteConfig[] = [
   }
 ];
 
+// Webツール関連のルート定義
 export const WEB_ROUTES: RouteConfig[] = [
   {
     path: "/web/url-encoder",
@@ -93,9 +91,14 @@ export const WEB_ROUTES: RouteConfig[] = [
   }
 ];
 
-/**
- * 全ルート定義
- */
+// Colorツール関連のルート定義
+export const COLOR_ROUTES: RouteConfig[] = [
+  {
+    path: "/color/color-converter",
+    element: <ColorConverterPage />,
+  }
+];
+// 全ルート定義
 export const ALL_ROUTES: RouteConfig[] = [
   {
     path: "/",
@@ -104,4 +107,5 @@ export const ALL_ROUTES: RouteConfig[] = [
   ...TEXT_ROUTES,
   ...JSON_ROUTES,
   ...WEB_ROUTES,
+  ...COLOR_ROUTES,
 ];

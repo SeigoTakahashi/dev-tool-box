@@ -17,6 +17,7 @@ const TextDiff = () => {
   );
   const [diffHtml, setDiffHtml] = useState<string>("");
 
+  // 比較処理
   const handleCompare = () => {
     // unified diff を生成
     const unifiedDiff = createTwoFilesPatch(

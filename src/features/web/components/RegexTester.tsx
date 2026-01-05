@@ -39,10 +39,12 @@ const RegexTester = () => {
   const [targetText, setTargetText] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
 
+  // フラグ変更処理
   const handleFlagChange = (flag: keyof typeof flags) => {
     setFlags((prev) => ({ ...prev, [flag]: !prev[flag] }));
   };
 
+  // 正規表現テスト処理
   const result = useMemo(() => {
     return testRegex(pattern, targetText, flags);
   }, [pattern, targetText, flags]);

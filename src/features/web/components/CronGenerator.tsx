@@ -35,14 +35,17 @@ const CronGenerator = () => {
   const [dayOfMonth, setDayOfMonth] = useState(1);
   const [customCron, setCustomCron] = useState("");
 
+  // 実行頻度変更処理
   const handleFrequencyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFrequency(e.target.value as Frequency);
   };
 
+  // 曜日選択変更処理
   const handleDayOfWeekChange = (day: keyof typeof dayOfWeek) => {
     setDayOfWeek((prev) => ({ ...prev, [day]: !prev[day] }));
   };
 
+  // Cron式生成処理
   const result = useMemo(() => {
     return generateCron({
       frequency,

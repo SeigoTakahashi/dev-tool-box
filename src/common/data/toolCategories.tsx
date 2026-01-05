@@ -155,6 +155,7 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         id: "color-converter",
         label: "カラーコード変換",
         icon: <PaletteIcon />,
+        path: "/color/color-converter",
       },
       {
         id: "palette-generator",
