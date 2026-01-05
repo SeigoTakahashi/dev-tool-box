@@ -11,3 +11,11 @@ export type HSL = {
   s: number;
   l: number;
 };
+
+export type PalettesType = {
+  monochromatic: string[];
+  analogous: string[];
+  complementary: string[];
+  triadic: string[];
+  tetradic: string[];
+};

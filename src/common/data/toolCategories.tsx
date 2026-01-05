@@ -161,6 +161,7 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         id: "palette-generator",
         label: "カラーパレット生成",
         icon: <ColorLensIcon />,
+        path: "/color/palette-generator",
       },
       {
         id: "gradient-preview",
