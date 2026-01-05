@@ -7,6 +7,7 @@ const JsonValidator = () => {
   const [inputText, setInputText] = useState("");
   const [isValid, setIsValid] = useState<boolean | null>(null);
 
+  // 検証処理
   const handleValidate = () => {
     const result = validateJson(inputText);
     setIsValid(result.ok);

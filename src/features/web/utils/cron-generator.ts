@@ -15,6 +15,7 @@ export type GenerateCronResult =
       error: string;
     };
 
+// Cron式を生成するユーティリティ関数
 export const generateCron = ({
   frequency,
   hour,
@@ -25,6 +26,7 @@ export const generateCron = ({
 }: GenerateCronParams): GenerateCronResult => {
   try {
     switch (frequency) {
+      // 毎分
       case "every-minute": {
         return {
           ok: true,
@@ -35,6 +37,7 @@ export const generateCron = ({
         };
       }
 
+      // 毎時
       case "hourly": {
         if (minute < 0 || minute > 59) {
           return { ok: false, error: "分は0〜59で指定してください" };
@@ -49,6 +52,7 @@ export const generateCron = ({
         };
       }
 
+      // 毎日
       case "daily": {
         return {
           ok: true,
@@ -61,6 +65,7 @@ export const generateCron = ({
         };
       }
 
+      // 毎週
       case "weekly": {
         const selectedDays = Object.entries(dayOfWeek)
           .filter(([, checked]) => checked)
@@ -85,6 +90,7 @@ export const generateCron = ({
         };
       }
 
+      // 毎月
       case "monthly": {
         if (dayOfMonth < 1 || dayOfMonth > 31) {
           return { ok: false, error: "日は1〜31で指定してください" };
@@ -103,6 +109,7 @@ export const generateCron = ({
         };
       }
 
+      // カスタム
       case "custom": {
         if (!customCron) {
           return { ok: false, error: "Cron式を入力してください" };
@@ -129,6 +136,7 @@ export const generateCron = ({
   }
 };
 
+// カスタムCron式を検証するユーティリティ関数
 export const validateCustomCron = (cronStr: string) => {
 
   const result = cron(cronStr, { preset: "default" });

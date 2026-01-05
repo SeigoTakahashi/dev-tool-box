@@ -12,6 +12,7 @@ const JsonFormatter = () => {
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
 
+  // 整形処理
   const handleFormat = () => {
     const result = formatJsonSafe(inputText, 2);
     if (result.ok) {

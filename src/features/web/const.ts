@@ -1,3 +1,4 @@
+// 正規表現のフラグの説明
 export const FLAG_DESCRIPTIONS = {
   g: "グローバル：すべてのマッチを探す（デフォルトは最初のマッチのみ）",
   i: "大文字小文字区別しない：Aとaなどのマッチを区別しない",
@@ -5,6 +6,7 @@ export const FLAG_DESCRIPTIONS = {
   m: "複数行：^と$が各行の開始と終了にマッチ",
 };
 
+// よく使われる正規表現パターンの一覧
 export const REGEX_PATTERNS = [
   { pattern: ".", description: "任意の1文字（改行を除く）" },
   { pattern: "\\d", description: "数字[0-9]" },
@@ -27,6 +29,7 @@ export const REGEX_PATTERNS = [
   { pattern: "a|b", description: "aまたはb" },
 ];
 
+// 曜日ラベルの定義
 export const DAY_LABELS = {
   monday: "月",
   tuesday: "火",
@@ -37,6 +40,7 @@ export const DAY_LABELS = {
   sunday: "日",
 };
 
+// 曜日からCron形式の数値へのマッピング
 export const DAY_TO_CRON: Record<string, number> = {
   sunday: 0,
   monday: 1,

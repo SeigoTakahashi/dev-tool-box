@@ -3,6 +3,7 @@ export type HashResult =
   | { ok: true; value: string }
   | { ok: false; error: string };
 
+// ハッシュを生成するユーティリティ関数
 export const generateHash = async (
   input: string,
   algorithm: HashAlgorithm
