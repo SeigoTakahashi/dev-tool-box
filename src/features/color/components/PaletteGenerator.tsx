@@ -14,7 +14,7 @@ import type { PalettesType } from "../types";
 
 // 初期パレット生成関数
 const initializePalettes = (): PalettesType => {
-  const result = generatePalette("#FFFFFF");
+  const result = generatePalette("#FFFF00");
   if (result.ok) {
     return result.palettes;
   }
@@ -29,7 +29,7 @@ const initializePalettes = (): PalettesType => {
 
 // カラーパレット生成コンポーネント
 const PaletteGenerator = () => {
-  const [baseColor, setBaseColor] = useState("#FFFFFF");
+  const [baseColor, setBaseColor] = useState("#FFFF00");
   const [palettes, setPalettes] = useState<PalettesType>(initializePalettes());
   const [error, setError] = useState<string | null>(null);
 
@@ -55,15 +55,15 @@ const PaletteGenerator = () => {
   return (
     <Paper sx={{ p: { xs: 2, sm: 2.5, md: 3 }, minHeight: "400px" }}>
       <Grid container spacing={{ xs: 1.5, sm: 2, md: 2 }}>
-        <Grid size={{ xs: 12, md: 6 }}>
+        <Grid
+          size={{ xs: 12 }}
+          sx={{ display: "flex", justifyContent: "center" }}
+        >
           {/* ベースカラー（HEX）入力 */}
           <Box
             sx={{
-              mb: 2,
-              p: { xs: 1.5, sm: 2 },
-              borderRadius: 1,
-              cursor: "pointer",
-              transition: "all 0.2s",
+              width: "100%",
+              maxWidth: "400px",
             }}
           >
             <Typography
@@ -76,14 +76,40 @@ const PaletteGenerator = () => {
             >
               ベースカラー
             </Typography>
-            <TextField
-              fullWidth
-              placeholder="#FFFFFF"
-              variant="outlined"
-              size="small"
-              value={baseColor}
-              onChange={(e) => handleGeneratePalette(e.target.value)}
-            />
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "flex-start",
+                justifyContent: "center",
+              }}
+            >
+              <TextField
+                placeholder="#FFFF00"
+                variant="outlined"
+                size="small"
+                value={baseColor}
+                inputProps={{
+                  readOnly: true,
+                  style: { textAlign: "center", fontFamily: "monospace" },
+                }}
+                sx={{ mr: 2 }}
+              />
+              <Tooltip title="カラーピッカーで色を選択">
+                <input
+                  type="color"
+                  value={baseColor}
+                  onChange={(e) => handleGeneratePalette(e.target.value)}
+                  style={{
+                    width: "44px",
+                    height: "40px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    cursor: "pointer",
+                    padding: "2px",
+                  }}
+                />
+              </Tooltip>
+            </Box>
             {error && (
               <Alert
                 severity="error"
@@ -98,19 +124,6 @@ const PaletteGenerator = () => {
               </Alert>
             )}
           </Box>
-        </Grid>
-        <Grid size={{ xs: 12, md: 6 }} sx={{ textAlign: "center" }}>
-          {/* ベースカラーのプレビュー表示 */}
-          <Box
-            sx={{
-              width: { xs: 80, sm: 100, md: 120 },
-              height: { xs: 80, sm: 100, md: 120 },
-              borderRadius: "50%",
-              backgroundColor: baseColor,
-              margin: "0 auto",
-              transition: "all 0.3s",
-            }}
-          />
         </Grid>
 
         {/* 生成されたカラーパレット表示エリア */}
