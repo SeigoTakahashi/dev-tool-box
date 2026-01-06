@@ -16,6 +16,7 @@ import CronGeneratorPage from "../pages/web/CronGeneratorPage";
 import HashGeneratorPage from "../pages/web/HashGeneratorPage";
 import ColorConverterPage from "../pages/color/ColorConverterPage";
 import PaletteGeneratorPage from "../pages/color/PaletteGeneratorPage";
+import GradientPreviewPage from "../pages/color/GradientPreviewPage";
 
 // ルート定義の型
 export type RouteConfig = {
@@ -101,6 +102,10 @@ export const COLOR_ROUTES: RouteConfig[] = [
   {
     path: "/color/palette-generator",
     element: <PaletteGeneratorPage />,
+  },
+  {
+    path: "/color/gradient-preview",
+    element: <GradientPreviewPage />,
   }
 ];
 // 全ルート定義

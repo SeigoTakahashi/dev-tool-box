@@ -167,6 +167,7 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         id: "gradient-preview",
         label: "グラデーションプレビュー",
         icon: <GradientIcon />,
+        path: "/color/gradient-preview",
       },
     ],
   },
