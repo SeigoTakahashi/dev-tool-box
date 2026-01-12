@@ -26,13 +26,10 @@ const LineEnding = () => {
   };
 
   return (
-    <Box sx={{ p: 2, display: "flex", justifyContent: "center" }}>
+    <Box sx={{ p: 1, display: "flex", justifyContent: "center" }}>
       <Stack spacing={0} sx={{ width: "100%", maxWidth: 900 }}>
         {/* 入力エリア */}
         <Box sx={{ textAlign: "center", pb: 3 }}>
-          <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
-            入力
-          </Typography>
           <TextField
             fullWidth
             multiline
@@ -47,7 +44,7 @@ const LineEnding = () => {
         {/* 変換設定 */}
         <Box sx={{ textAlign: "center", pb: 2 }}>
           <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-            出力の改行コード設定
+            改行コード設定
           </Typography>
           <RadioGroup
             value={lineEndingType}
@@ -86,9 +83,6 @@ const LineEnding = () => {
 
         {/* 出力エリア */}
         <Box sx={{ textAlign: "center", pt: 3 }}>
-          <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
-            出力
-          </Typography>
           <TextField
             fullWidth
             multiline

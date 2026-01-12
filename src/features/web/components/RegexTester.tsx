@@ -50,19 +50,19 @@ const RegexTester = () => {
   }, [pattern, targetText, flags]);
 
   return (
-    <Box sx={{ p: 3, display: "flex", justifyContent: "center" }}>
-      <Box sx={{ width: "100%", maxWidth: 1200 }}>
+    <Box sx={{ p: 2, display: "flex", justifyContent: "center" }}>
+      <Box sx={{ width: "100%", maxWidth: 1200, position: "relative" }}>
         <Tooltip title="正規表現パターンチートシート">
           <IconButton
             size="small"
             onClick={() => setOpenDialog(true)}
-            sx={{ p: 0.5, top: 170, right: 50, position: "fixed" }}
+            sx={{ top: -27, right: 0, position: "absolute" }}
           >
             <HelpIcon fontSize="small" />
           </IconButton>
         </Tooltip>
         {/* 一段目：パターンとフラグ */}
-        <Grid container spacing={3} sx={{ mb: 3 }}>
+        <Grid container spacing={2} sx={{ mb: 2 }}>
           {/* 左：正規表現パターン */}
           <Grid size={{ xs: 12, sm: 6 }}>
             <Paper sx={{ p: 3, height: "100%" }}>
@@ -138,7 +138,7 @@ const RegexTester = () => {
         </Grid>
 
         {/* 二段目：対象文字列と結果 */}
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           {/* 左：対象の文字列 */}
           <Grid size={{ xs: 12, sm: 6 }}>
             <Paper sx={{ p: 3, height: "100%" }}>

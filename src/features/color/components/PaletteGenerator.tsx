@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   Box,
-  Paper,
   TextField,
   Typography,
   Grid,
@@ -53,8 +52,8 @@ const PaletteGenerator = () => {
   };
 
   return (
-    <Paper sx={{ p: { xs: 2, sm: 2.5, md: 3 }, minHeight: "400px" }}>
-      <Grid container spacing={{ xs: 1.5, sm: 2, md: 2 }}>
+    <Box sx={{ p: { xs: 2, sm: 2.5, md: 3 }, minHeight: "400px" }}>
+      <Grid container spacing={2}>
         <Grid
           size={{ xs: 12 }}
           sx={{ display: "flex", justifyContent: "center" }}
@@ -66,16 +65,6 @@ const PaletteGenerator = () => {
               maxWidth: "400px",
             }}
           >
-            <Typography
-              variant="subtitle2"
-              sx={{
-                mb: 1,
-                color: "text.secondary",
-                fontSize: { xs: "0.875rem", sm: "1rem" },
-              }}
-            >
-              ベースカラー
-            </Typography>
             <Box
               sx={{
                 display: "flex",
@@ -83,17 +72,6 @@ const PaletteGenerator = () => {
                 justifyContent: "center",
               }}
             >
-              <TextField
-                placeholder="#FFFF00"
-                variant="outlined"
-                size="small"
-                value={baseColor}
-                inputProps={{
-                  readOnly: true,
-                  style: { textAlign: "center", fontFamily: "monospace" },
-                }}
-                sx={{ mr: 2 }}
-              />
               <Tooltip title="カラーピッカーで色を選択">
                 <input
                   type="color"
@@ -106,9 +84,21 @@ const PaletteGenerator = () => {
                     borderRadius: "4px",
                     cursor: "pointer",
                     padding: "2px",
+                    marginRight: "12px",
                   }}
                 />
               </Tooltip>
+              <TextField
+                placeholder="#FFFF00"
+                variant="outlined"
+                size="small"
+                value={baseColor}
+                inputProps={{
+                  readOnly: true,
+                  style: { textAlign: "center" },
+                }}
+                label="ベースカラー（HEX）"
+              />
             </Box>
             {error && (
               <Alert
@@ -132,7 +122,7 @@ const PaletteGenerator = () => {
             <Grid
               size={{ xs: 12 }}
               key={index}
-              sx={{ mb: { xs: 2, sm: 3, md: 4 } }}
+              sx={{ mb: 2}}
             >
               <Typography
                 variant="h6"
@@ -140,7 +130,7 @@ const PaletteGenerator = () => {
                   mb: { xs: 1.5, sm: 2 },
                   fontWeight: 600,
                   textAlign: "center",
-                  fontSize: { xs: "1rem", sm: "1.1rem", md: "1.25rem" },
+                  fontSize: { xs: "0.8rem", sm: "0.9rem", md: "1.05rem" },
                 }}
               >
                 {PALETTE_LABELS[key]}
@@ -174,9 +164,9 @@ const PaletteGenerator = () => {
                         justifyContent: "center",
                         padding: "4px",
                         fontSize: {
-                          xs: "0.65rem",
-                          sm: "0.75rem",
-                          md: "0.85rem",
+                          xs: "0.55rem",
+                          sm: "0.65rem",
+                          md: "0.75rem",
                         },
                         color: "#666",
                         overflow: "hidden",
@@ -192,7 +182,7 @@ const PaletteGenerator = () => {
           )
         )}
       </Grid>
-    </Paper>
+    </Box>
   );
 };
 
