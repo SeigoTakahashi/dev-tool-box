@@ -18,6 +18,7 @@ import ColorConverterPage from "../pages/color/ColorConverterPage";
 import PaletteGeneratorPage from "../pages/color/PaletteGeneratorPage";
 import GradientPreviewPage from "../pages/color/GradientPreviewPage";
 import ImageCompressorPage from "../pages/image/ImageCompressorPage";
+import FaviconGeneratorPage from "../pages/image/FaviconGeneratorPage";
 
 // ルート定義の型
 export type RouteConfig = {
@@ -116,6 +117,10 @@ export const IMAGE_ROUTES: RouteConfig[] = [
     path: "/image/image-compressor",
     element: <ImageCompressorPage />,
   },
+  {
+    path: "/image/favicon-generator",
+    element: <FaviconGeneratorPage />,
+  }
 ];
 
 // 全ルート定義
