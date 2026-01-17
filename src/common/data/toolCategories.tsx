@@ -176,7 +176,12 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
     label: "Image",
     icon: <ImageIcon />,
     tools: [
-      { id: "image-compressor", label: "画像圧縮", icon: <CompressIcon /> },
+      {
+        id: "image-compressor",
+        label: "画像圧縮",
+        icon: <CompressIcon />,
+        path: "/image/image-compressor",
+      },
       {
         id: "favicon-generator",
         label: "Favicon生成",

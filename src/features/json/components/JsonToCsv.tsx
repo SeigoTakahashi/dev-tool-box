@@ -58,7 +58,7 @@ const JsonToCsv = () => {
   const handleFileSelect = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const content = await readFileFromInput(event);
+    const content = await readFileFromInput<string>(event, "text");
     setInputText(content);
   };
 
