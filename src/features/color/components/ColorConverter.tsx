@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Grid, TextField, Typography, Paper, Stack, Alert } from "@mui/material";
+import { Box, Grid, TextField, Stack, Alert } from "@mui/material";
 import type { ColorEditMode, RGB, HSL } from "../types";
 import {
   hexToRgb,
@@ -86,14 +86,10 @@ const ColorConverter = () => {
 
   return (
     <Box sx={{ p: 2 }}>
-      <Grid container spacing={4}>
+      <Grid container spacing={2}>
         {/* 左側: 入力フォーム */}
         <Grid size={{ xs: 12, md: 6 }}>
-          <Paper sx={{ p: 3, minHeight: "400px" }}>
-            <Typography variant="h6" sx={{ mb: 3, fontWeight: "bold" }}>
-              カラーコード入力
-            </Typography>
-
+          <Box sx={{ p: 3, minHeight: "400px" }}>
             {/* HEX入力 */}
             <Box
               onClick={() => setEditMode("hex")}
@@ -109,12 +105,6 @@ const ColorConverter = () => {
                 transition: "all 0.2s",
               }}
             >
-              <Typography
-                variant="subtitle2"
-                sx={{ mb: 1, color: "text.secondary" }}
-              >
-                HEX
-              </Typography>
               <TextField
                 fullWidth
                 value={hex}
@@ -123,6 +113,7 @@ const ColorConverter = () => {
                 variant="outlined"
                 size="small"
                 disabled={editMode !== "hex"}
+                label="HEX"
               />
             </Box>
 
@@ -141,12 +132,6 @@ const ColorConverter = () => {
                 transition: "all 0.2s",
               }}
             >
-              <Typography
-                variant="subtitle2"
-                sx={{ mb: 1, color: "text.secondary" }}
-              >
-                RGB
-              </Typography>
               {editMode === "rgb" ? (
                 <Stack direction="row" spacing={1}>
                   <TextField
@@ -205,6 +190,7 @@ const ColorConverter = () => {
                   disabled
                   variant="outlined"
                   size="small"
+                  label="RGB"
                 />
               )}
             </Box>
@@ -224,12 +210,6 @@ const ColorConverter = () => {
                 transition: "all 0.2s",
               }}
             >
-              <Typography
-                variant="subtitle2"
-                sx={{ mb: 1, color: "text.secondary" }}
-              >
-                HSL
-              </Typography>
               {editMode === "hsl" ? (
                 <Stack direction="row" spacing={1}>
                   <TextField
@@ -288,53 +268,31 @@ const ColorConverter = () => {
                   disabled
                   variant="outlined"
                   size="small"
+                  label="HSL"
                 />
               )}
             </Box>
-          </Paper>
+          </Box>
         </Grid>
 
         {/* 右側: カラープレビュー */}
         <Grid size={{ xs: 12, md: 6 }}>
-          <Paper
-            sx={{
-              p: 3,
-              minHeight: "400px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              borderRadius: 2,
-              boxShadow: 2,
-            }}
-          >
-            {error ? (
-              <Alert severity="error" sx={{ width: "100%" }}>
-                {error}
-              </Alert>
-            ) : (
-              <Box
-                sx={{
-                  width: "100%",
-                  height: "300px",
-                  borderRadius: 1,
-                  background: hex,
-                  border: "2px solid rgba(255, 255, 255, 0.3)",
-                  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-                }}
-              />
-            )}
-            <Typography
-              variant="body2"
+          {error ? (
+            <Alert severity="error" sx={{ width: "100%" }}>
+              {error}
+            </Alert>
+          ) : (
+            <Box
               sx={{
-                mt: 2,
-                color: "text.secondary",
-                textAlign: "center",
+                width: "100%",
+                height: "300px",
+                borderRadius: 1,
+                background: hex,
+                border: "2px solid rgba(255, 255, 255, 0.3)",
+                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
               }}
-            >
-              プレビュー
-            </Typography>
-          </Paper>
+            />
+          )}
         </Grid>
       </Grid>
     </Box>

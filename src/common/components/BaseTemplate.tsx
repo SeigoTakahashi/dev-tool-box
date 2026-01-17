@@ -75,7 +75,7 @@ const BaseTemplate: React.FC<BaseTemplateProps> = ({
             <div className="max-w-[1200px] mx-auto">
               {/* タイトルとサブタイトル */}
               {title || subtitle ? (
-                <header className="mb-6">
+                <header className="mb-4">
                   <h1 className="text-2xl font-bold" style={{ color: theme.palette.text.primary }}>
                     {title || "Dev Tool Box"}
                   </h1>
@@ -87,7 +87,7 @@ const BaseTemplate: React.FC<BaseTemplateProps> = ({
 
               {/* コンテンツ */}
               <section className="rounded-xl shadow-xl">
-                <div className="text-center py-5">
+                <div className="text-center py-3">
                   {children || "Select a tool from the navigation menu."}
                 </div>
               </section>

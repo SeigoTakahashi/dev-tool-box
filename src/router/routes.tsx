@@ -17,6 +17,7 @@ import HashGeneratorPage from "../pages/web/HashGeneratorPage";
 import ColorConverterPage from "../pages/color/ColorConverterPage";
 import PaletteGeneratorPage from "../pages/color/PaletteGeneratorPage";
 import GradientPreviewPage from "../pages/color/GradientPreviewPage";
+import ImageCompressorPage from "../pages/image/ImageCompressorPage";
 
 // ルート定義の型
 export type RouteConfig = {
@@ -108,6 +109,15 @@ export const COLOR_ROUTES: RouteConfig[] = [
     element: <GradientPreviewPage />,
   }
 ];
+
+// Imageツール関連のルート定義
+export const IMAGE_ROUTES: RouteConfig[] = [
+  {
+    path: "/image/image-compressor",
+    element: <ImageCompressorPage />,
+  },
+];
+
 // 全ルート定義
 export const ALL_ROUTES: RouteConfig[] = [
   {
@@ -118,4 +128,5 @@ export const ALL_ROUTES: RouteConfig[] = [
   ...JSON_ROUTES,
   ...WEB_ROUTES,
   ...COLOR_ROUTES,
+  ...IMAGE_ROUTES,
 ];

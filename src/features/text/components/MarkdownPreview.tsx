@@ -15,9 +15,9 @@ const MarkdownPreview = () => {
   const [isPreview, setIsPreview] = useState(false);
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ p: 2 }}>
       {/* トグル */}
-      <Box sx={{ mb: 3 }}>
+      <Box sx={{ mb: 2 }}>
         <FormControlLabel
           control={
             <Switch

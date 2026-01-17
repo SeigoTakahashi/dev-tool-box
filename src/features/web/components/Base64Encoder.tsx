@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   TextField,
-  Paper,
   FormControl,
   Typography,
   Grid,
@@ -35,10 +34,10 @@ const Base64Encoder = () => {
   };
 
   return (
-    <Box sx={{ p: 3, display: "flex", justifyContent: "center" }}>
+    <Box sx={{ p: 2, display: "flex", justifyContent: "center" }}>
       <Box sx={{ width: "100%", maxWidth: 900 }}>
         {/* エンコード/デコード選択エリア */}
-        <Paper sx={{ p: 3, mb: 3 }}>
+        <Box sx={{ p: 3, mb: 3 }} border="0.1px solid" borderRadius={1}>
           <FormControl fullWidth>
             <Typography variant="subtitle2" sx={{ mb: 2, fontWeight: 600 }}>
               変換モードを選択
@@ -62,14 +61,11 @@ const Base64Encoder = () => {
               />
             </RadioGroup>
           </FormControl>
-        </Paper>
+        </Box>
 
         {/* 入力と結果表示エリア */}
         <Grid container spacing={2} sx={{ mb: 3 }}>
           <Grid size={{ xs: 12, sm: 6 }}>
-            <Typography variant="subtitle2" sx={{ mb: 1, fontWeight: 600 }}>
-              入力
-            </Typography>
             <TextField
               fullWidth
               multiline
@@ -81,9 +77,6 @@ const Base64Encoder = () => {
             />
           </Grid>
           <Grid size={{ xs: 12, sm: 6 }}>
-            <Typography variant="subtitle2" sx={{ mb: 1, fontWeight: 600 }}>
-              結果
-            </Typography>
             <TextField
               fullWidth
               multiline

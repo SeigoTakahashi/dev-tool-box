@@ -58,10 +58,10 @@ const CronGenerator = () => {
   }, [frequency, hour, minute, dayOfWeek, dayOfMonth, customCron]);
 
   return (
-    <Box sx={{ p: 3, display: "flex", justifyContent: "center" }}>
+    <Box sx={{ p: 2, display: "flex", justifyContent: "center" }}>
       <Box sx={{ width: "100%", maxWidth: 800 }}>
         {/* 実行頻度の選択 */}
-        <Paper sx={{ p: 3, mb: 3 }}>
+        <Paper sx={{ p: 2, mb: 2 }}>
           <Typography variant="subtitle2" sx={{ mb: 2, fontWeight: 600 }}>
             実行頻度を選択
           </Typography>
@@ -88,7 +88,7 @@ const CronGenerator = () => {
         </Paper>
 
         {/* 詳細設定 */}
-        <Paper sx={{ p: 3, mb: 3 }}>
+        <Paper sx={{ p: 2, mb: 2 }}>
           <Typography variant="subtitle2" sx={{ mb: 2, fontWeight: 600 }}>
             詳細設定
           </Typography>
@@ -261,7 +261,7 @@ const CronGenerator = () => {
         </Paper>
 
         {/* 生成されたCron式 */}
-        <Paper sx={{ p: 3, mb: 3 }}>
+        <Paper sx={{ p: 2, mb: 2 }}>
           <Typography variant="subtitle2" sx={{ mb: 2, fontWeight: 600 }}>
             生成された Cron式
           </Typography>
