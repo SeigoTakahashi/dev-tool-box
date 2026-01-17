@@ -186,6 +186,7 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         id: "favicon-generator",
         label: "Favicon生成",
         icon: <ImageIcon />,
+        path: "/image/favicon-generator",
       },
       {
         id: "background-remover",
