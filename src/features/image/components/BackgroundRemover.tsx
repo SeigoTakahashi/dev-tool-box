@@ -3,12 +3,14 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import DownloadIcon from "@mui/icons-material/Download";
 import { readFileFromInput } from "../../../common/utils/readFileFromInput";
-import { compressorImage } from "../utils/image-compressor";
+import { removeBackground } from "../utils/background-remover";
 
-// 画像圧縮コンポーネント
-const ImageCompressor = () => {
+// 背景除去コンポーネント
+const BackgroundRemover = () => {
   const [inputFile, setInputFile] = useState<File | null>(null);
-  const [compressedFile, setCompressedFile] = useState<File | null>(null);
+  const [backgroundRemovedFileUrl, setBackgroundRemovedFileUrl] = useState<
+    string | null
+  >(null);
   const [error, setError] = useState<string | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -17,13 +19,16 @@ const ImageCompressor = () => {
   const handleFileSelect = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const content = await readFileFromInput<File>(event, "file");
-    setInputFile(content);
-    const compressedResult = content ? await compressorImage(content) : null;
-    if (compressedResult && compressedResult.ok) {
-      setCompressedFile(compressedResult.value);
-    } else if (compressedResult && !compressedResult.ok) {
-      setError(compressedResult.error);
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const data = await readFileFromInput<ArrayBuffer>(event, "arrayBuffer");
+    setInputFile(file);
+    const removerdResult = data ? await removeBackground(data, file.type) : null;
+    if (removerdResult && removerdResult.ok) {
+      setBackgroundRemovedFileUrl(removerdResult.value);
+    } else if (removerdResult && !removerdResult.ok) {
+      setError(removerdResult.error);
     }
   };
 
@@ -48,48 +53,52 @@ const ImageCompressor = () => {
             style={{ display: "none" }}
           />
         </Box>
-        {/* 画像情報表示エリア */}
+        {/* 背景画像除去エリア */}
         <Box>
           {inputFile && (
             <>
-              <Typography variant="h6" sx={{ textAlign: "center" }}>
-                元画像のサイズ：{(inputFile.size / 1024 / 1024).toFixed(2)} MB
-              </Typography>
-              {compressedFile && (
+              {backgroundRemovedFileUrl && (
                 <>
                   <Typography variant="h6" sx={{ textAlign: "center" }}>
-                    圧縮率：
-                    {(
-                      ((inputFile.size - compressedFile.size) /
-                        inputFile.size) *
-                      100
-                    ).toFixed(2)}
-                    %
+                    {inputFile.name}
                   </Typography>
-                  <Typography variant="h6" sx={{ textAlign: "center" }}>
-                    圧縮した画像のサイズ：
-                    {(compressedFile.size / 1024 / 1024).toFixed(2)} MB
-                  </Typography>
+                  <Box
+                    component="img"
+                    src={backgroundRemovedFileUrl}
+                    alt="Background Removed"
+                    sx={{
+                      display: "block",
+                      maxWidth: "100%",
+                      height: "auto",
+                      mx: "auto",
+                      mt: 2,
+                    }}
+                  />
                   <Button
                     variant="contained"
                     size="large"
-                    sx={{ mt: 2, display: "block", mx: "auto", width: "fit-content" }}
-                    href={URL.createObjectURL(compressedFile)}
-                    download={`compressed_${inputFile.name}`}
+                    sx={{
+                      mt: 2,
+                      display: "block",
+                      mx: "auto",
+                      width: "fit-content",
+                    }}
+                    href={backgroundRemovedFileUrl}
+                    download={inputFile.name.replace(/\.[^/.]+$/, "_no_bg.png")}
                     color="success"
                   >
                     <DownloadIcon sx={{ mr: 1 }} />
-                    圧縮画像をダウンロード
+                    背景画像をダウンロード
                   </Button>
                 </>
               )}
 
-              {!compressedFile && !error && (
+              {!backgroundRemovedFileUrl && !error && (
                 <Typography
                   variant="h6"
                   sx={{ textAlign: "center" }}
                 >
-                  画像を圧縮中...
+                  背景画像を除去中...
                 </Typography>
               )}
 
@@ -111,4 +120,4 @@ const ImageCompressor = () => {
   );
 };
 
-export default ImageCompressor;
+export default BackgroundRemover;

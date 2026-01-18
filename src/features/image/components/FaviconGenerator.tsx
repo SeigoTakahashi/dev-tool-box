@@ -81,7 +81,7 @@ const FaviconGenerator = () => {
               {!faviconFile && !error && (
                 <Typography
                   variant="h6"
-                  sx={{ textAlign: "center", color: "blue" }}
+                  sx={{ textAlign: "center" }}
                 >
                   Faviconを生成中...
                 </Typography>

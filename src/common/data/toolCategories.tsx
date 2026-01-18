@@ -192,6 +192,7 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         id: "background-remover",
         label: "背景除去",
         icon: <ImageSearchIcon />,
+        path: "/image/background-remover",
       },
     ],
   },
