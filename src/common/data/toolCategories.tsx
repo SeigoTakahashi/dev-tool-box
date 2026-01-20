@@ -201,7 +201,12 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
     label: "Utility",
     icon: <HomeIcon />,
     tools: [
-      { id: "qr-code", label: "QRコード生成", icon: <QrCode2Icon /> },
+      {
+        id: "qr-code-generator",
+        label: "QRコード生成",
+        icon: <QrCode2Icon />,
+        path: "/utility/qr-code-generator",
+      },
       { id: "unit-converter", label: "単位変換", icon: <SwapCallsIcon /> },
       { id: "random-generator", label: "ランダム生成", icon: <TouchAppIcon /> },
       {

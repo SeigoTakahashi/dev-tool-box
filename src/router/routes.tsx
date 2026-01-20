@@ -20,6 +20,7 @@ import GradientPreviewPage from "../pages/color/GradientPreviewPage";
 import ImageCompressorPage from "../pages/image/ImageCompressorPage";
 import FaviconGeneratorPage from "../pages/image/FaviconGeneratorPage";
 import BackgroundRemoverPage from "../pages/image/BackgroundRemoverPage";
+import QrCodeGeneratorPage from "../pages/utility/QrCodeGeneratorPage";
 
 // ルート定義の型
 export type RouteConfig = {
@@ -128,6 +129,14 @@ export const IMAGE_ROUTES: RouteConfig[] = [
   }
 ];
 
+// Utilityツール関連のルート定義
+export const UTILITY_ROUTES: RouteConfig[] = [
+  {
+    path: "/utility/qr-code-generator",
+    element: <QrCodeGeneratorPage />,
+  }
+];
+
 // 全ルート定義
 export const ALL_ROUTES: RouteConfig[] = [
   {
@@ -139,4 +148,5 @@ export const ALL_ROUTES: RouteConfig[] = [
   ...WEB_ROUTES,
   ...COLOR_ROUTES,
   ...IMAGE_ROUTES,
+  ...UTILITY_ROUTES,
 ];
