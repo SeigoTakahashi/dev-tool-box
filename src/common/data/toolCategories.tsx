@@ -207,7 +207,12 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         icon: <QrCode2Icon />,
         path: "/utility/qr-code-generator",
       },
-      { id: "unit-converter", label: "単位変換", icon: <SwapCallsIcon /> },
+      {
+        id: "base-converter",
+        label: "基底変換",
+        icon: <SwapCallsIcon />,
+        path: "/utility/base-converter",
+      },
       { id: "random-generator", label: "ランダム生成", icon: <TouchAppIcon /> },
       {
         id: "password-checker",
