@@ -21,6 +21,7 @@ import ImageCompressorPage from "../pages/image/ImageCompressorPage";
 import FaviconGeneratorPage from "../pages/image/FaviconGeneratorPage";
 import BackgroundRemoverPage from "../pages/image/BackgroundRemoverPage";
 import QrCodeGeneratorPage from "../pages/utility/QrCodeGeneratorPage";
+import BaseConverterPage from "../pages/utility/BaseConverterPage";
 
 // ルート定義の型
 export type RouteConfig = {
@@ -134,6 +135,10 @@ export const UTILITY_ROUTES: RouteConfig[] = [
   {
     path: "/utility/qr-code-generator",
     element: <QrCodeGeneratorPage />,
+  },
+  {
+    path: "/utility/base-converter",
+    element: <BaseConverterPage />,
   }
 ];
 
