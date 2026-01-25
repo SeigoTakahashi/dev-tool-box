@@ -22,6 +22,7 @@ import FaviconGeneratorPage from "../pages/image/FaviconGeneratorPage";
 import BackgroundRemoverPage from "../pages/image/BackgroundRemoverPage";
 import QrCodeGeneratorPage from "../pages/utility/QrCodeGeneratorPage";
 import BaseConverterPage from "../pages/utility/BaseConverterPage";
+import RandomGeneratorPage from "../pages/utility/RandomGeneratorPage";
 
 // ルート定義の型
 export type RouteConfig = {
@@ -139,6 +140,10 @@ export const UTILITY_ROUTES: RouteConfig[] = [
   {
     path: "/utility/base-converter",
     element: <BaseConverterPage />,
+  },
+  {
+    path: "/utility/random-generator",
+    element: <RandomGeneratorPage />,
   }
 ];
 

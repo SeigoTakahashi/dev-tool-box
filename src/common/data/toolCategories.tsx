@@ -213,7 +213,12 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         icon: <SwapCallsIcon />,
         path: "/utility/base-converter",
       },
-      { id: "random-generator", label: "ランダム生成", icon: <TouchAppIcon /> },
+      {
+        id: "random-generator",
+        label: "ランダム生成",
+        icon: <TouchAppIcon />,
+        path: "/utility/random-generator",
+      },
       {
         id: "password-checker",
         label: "パスワード強度チェッカー",
