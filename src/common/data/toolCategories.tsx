@@ -223,6 +223,7 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         id: "password-checker",
         label: "パスワード強度チェッカー",
         icon: <GppGoodIcon />,
+        path: "/utility/password-checker",
       },
     ],
   },
