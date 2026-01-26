@@ -24,6 +24,7 @@ import QrCodeGeneratorPage from "../pages/utility/QrCodeGeneratorPage";
 import BaseConverterPage from "../pages/utility/BaseConverterPage";
 import RandomGeneratorPage from "../pages/utility/RandomGeneratorPage";
 import PasswordCheckerPage from "../pages/utility/PasswordCheckerPage";
+import NotFoundPage from "../pages/NotFoundPage";
 
 // ルート定義の型
 export type RouteConfig = {
@@ -164,4 +165,8 @@ export const ALL_ROUTES: RouteConfig[] = [
   ...COLOR_ROUTES,
   ...IMAGE_ROUTES,
   ...UTILITY_ROUTES,
+  {
+    path: "*",
+    element: <NotFoundPage />,
+  },
 ];
