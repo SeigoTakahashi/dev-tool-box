@@ -16,6 +16,8 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 import { useTheme } from "../context/ThemeContext";
 
+import { TOOL_CATEGORIES } from "../data/toolCategories";
+
 type TopBarProps = {
   title?: string;
   onMenuToggle: () => void;
@@ -30,12 +32,19 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuToggle }) => {
   const { mode, toggleTheme } = useTheme();
 
   // 検索クエリの状態管理
-  const [query] = useState("");
+  const [query, setQuery] = useState("");
 
   // タイトルクリック時にホームへ遷移
   const handleTitleClick = () => {
     navigate("/");
   };
+
+  // 検索クエリから機能候補をフィルタリング
+  const filteredTools = TOOL_CATEGORIES.flatMap((category) =>
+    category.tools.filter((tool) =>
+      tool.label.toLowerCase().includes(query.toLowerCase()),
+    ),
+  );
 
   return (
     <AppBar
@@ -45,7 +54,8 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuToggle }) => {
       sx={{
         zIndex: 1000,
         backgroundColor: mode === "dark" ? "#121212" : "#f5f5f5",
-        borderBottom: mode === "dark" ? "1px solid #333333" : "1px solid #e0e0e0",
+        borderBottom:
+          mode === "dark" ? "1px solid #333333" : "1px solid #e0e0e0",
       }}
     >
       <Toolbar className="px-4 lg:px-6">
@@ -79,18 +89,86 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuToggle }) => {
 
         <Box className="flex-1" />
 
-        {/* 検索入力欄（小画面では非表示） */}
+        {/* 検索バー */}
         <div
-          className={`hidden sm:flex items-center gap-3 px-3 py-1 rounded-md`}
+          className={`
+    hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-all relative w-full max-w-md mx-auto
+    ${
+      mode === "dark"
+        ? "bg-[#1e1e1e] border-gray-700 focus-within:ring-gray-900 focus-within:border-gray-500"
+        : "bg-gray-50 border-gray-200 focus-within:bg-white focus-within:ring-gray-100 focus-within:border-gray-400"
+    }
+  `}
         >
-          <SearchIcon />
+          <SearchIcon
+            className={mode === "dark" ? "text-gray-500" : "text-gray-400"}
+          />
+
           <InputBase
             placeholder="Search tools..."
             value={query}
-            inputProps={{ "aria-label": "search" }}
-            className="text-sm"
-            sx={{ ml: 1 }}
+            fullWidth
+            onChange={(e) => setQuery(e.target.value)}
+            // MUIのsxで文字色を制御
+            sx={{
+              ml: 1,
+              fontSize: "0.875rem",
+              color: mode === "dark" ? "#ffffff" : "#000000",
+              "& input::placeholder": {
+                color: mode === "dark" ? "#888" : "#aaa",
+                opacity: 1,
+              },
+            }}
           />
+
+          {/* 検索結果ドロップダウン */}
+          {query && (
+            <div
+              className={`
+        absolute top-[calc(100%+8px)] left-0 right-0 border shadow-2xl rounded-xl py-2 max-h-[300px] overflow-y-auto z-50
+        ${
+          mode === "dark"
+            ? "bg-[#252526] border-gray-700 shadow-black"
+            : "bg-white border-gray-100 shadow-gray-200"
+        }
+      `}
+            >
+              {filteredTools.length > 0 ? (
+                filteredTools.map((tool) => (
+                  <div
+                    key={tool.id}
+                    className={`
+              px-4 py-2.5 flex items-center gap-3 cursor-pointer transition-colors
+              ${
+                mode === "dark"
+                  ? "hover:bg-[#37373d] text-gray-200"
+                  : "hover:bg-gray-50 text-gray-700"
+              }
+            `}
+                    onClick={() => {
+                      navigate(tool.path || "/");
+                      setQuery("");
+                    }}
+                  >
+                    <span
+                      className={
+                        mode === "dark" ? "text-gray-400" : "text-gray-400"
+                      }
+                    >
+                      {tool.icon}
+                    </span>
+                    <span className="font-medium text-sm">{tool.label}</span>
+                  </div>
+                ))
+              ) : (
+                <div
+                  className={`px-4 py-3 text-sm text-center ${mode === "dark" ? "text-gray-500" : "text-gray-400"}`}
+                >
+                  No results for "<strong>{query}</strong>"
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* ダークモード切替スイッチとアイコン */}

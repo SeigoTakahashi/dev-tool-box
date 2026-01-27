@@ -120,6 +120,7 @@ const ColorConverter = () => {
             {/* RGB入力 */}
             <Box
               onClick={() => setEditMode("rgb")}
+              data-testid="rgb-edit-section"
               sx={{
                 mb: 3,
                 p: 2,

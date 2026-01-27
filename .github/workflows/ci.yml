@@ -30,10 +30,20 @@ jobs:
       - name: Run ESLint
         run: npm run lint --if-present
 
-      # 5. Test
-      - name: Run Tests
+      # 5. Unit Test
+      - name: Run Unit Tests
         run: npm test --if-present
 
       # 6. Build (本番ビルドが通るかチェック)
       - name: Build project
         run: npm run build --if-present
+
+      # 7. E2E Test
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: npm run test:e2e
+        env:
+          # PRの時は空文字になる → Playwright Config内の webServer が起動する
+          PLAYWRIGHT_BASE_URL: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') && 'https://dev-tool-box.pages.dev' || '' }}
