@@ -42,13 +42,8 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Set PLAYWRIGHT_BASE_URL
-        run: |
-          if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            echo "PLAYWRIGHT_BASE_URL=https://dev-tool-box.pages.dev" >> $GITHUB_ENV
-          else
-            echo "PLAYWRIGHT_BASE_URL=" >> $GITHUB_ENV
-          fi
-
       - name: Run Playwright tests
-        run: npm run test:e2e --if-present
+        run: npm run test:e2e
+        env:
+          # PRの時は空文字になる → Playwright Config内の webServer が起動する
+          PLAYWRIGHT_BASE_URL: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') && 'https://dev-tool-box.pages.dev' || '' }}

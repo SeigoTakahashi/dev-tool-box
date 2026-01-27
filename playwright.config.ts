@@ -8,7 +8,7 @@ import { defineConfig, type PlaywrightTestConfig } from '@playwright/test';
 // Playwright テスト設定
 // ローカルのプレビューサーバーを起動するか、環境変数で指定された baseURL を使うかを切り替え
 const envBase = process.env.PLAYWRIGHT_BASE_URL || '';
-const baseURL = envBase && envBase.length > 0 ? envBase : 'http://127.0.0.1:5174';
+const baseURL = envBase.length > 0 ? envBase : 'http://localhost:5174';
 
 const config: PlaywrightTestConfig = {
   // テストファイルの場所
@@ -50,7 +50,7 @@ const config: PlaywrightTestConfig = {
 if (!envBase) {
   config.webServer = {
     command: 'npm run preview -- --port 5174',
-    url: 'http://127.0.0.1:5174', // PlaywrightがこのURLの起動を待機するようになる
+    url: 'http://localhost:5174', // PlaywrightがこのURLの起動を待機するようになる
     reuseExistingServer: !process.env.CI, // CIでは常にクリーンな状態で起動
     timeout: 120_000,
   };
