@@ -51,4 +51,4 @@ jobs:
           fi
 
       - name: Run Playwright tests
-        run: npx playwright test --if-present
+        run: npm run test:e2e --if-present
