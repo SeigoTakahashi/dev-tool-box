@@ -36,7 +36,7 @@ const QrCodeGenerator = () => {
         </Box>
         {/* QRコード表示エリア */}
         {showQrCode && (
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Box sx={{ display: "flex", justifyContent: "center" }} className="qr-code-box">
             <QRCodeCanvas
               value={url}
               size={256}

@@ -28,7 +28,7 @@ const RandomGenerator = () => {
       </Button>
       {uuid && (
         <>
-          <Box sx={{ wordBreak: "break-all" }}>{uuid}</Box>
+          <Box sx={{ wordBreak: "break-all" }} className="uuid-display">{uuid}</Box>
           <CopyButton text={uuid} />
         </>
       )}
@@ -41,7 +41,7 @@ const RandomGenerator = () => {
       </Button>
       {password && (
         <>
-          <Box sx={{ wordBreak: "break-all" }}>{password}</Box>
+          <Box sx={{ wordBreak: "break-all" }} className="password-display">{password}</Box>
           <CopyButton text={password} />
         </>
       )}

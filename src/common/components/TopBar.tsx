@@ -138,7 +138,7 @@ const TopBar: React.FC<TopBarProps> = ({ onMenuToggle }) => {
                   <div
                     key={tool.id}
                     className={`
-              px-4 py-2.5 flex items-center gap-3 cursor-pointer transition-colors
+              px-4 py-2.5 flex items-center gap-3 cursor-pointer transition-colors tool-card
               ${
                 mode === "dark"
                   ? "hover:bg-[#37373d] text-gray-200"

@@ -129,16 +129,17 @@ const CronGenerator = () => {
               <Typography variant="body2">毎日</Typography>
               <TextField
                 type="number"
-                inputProps={{ min: 0, max: 23 }}
+                inputProps={{ min: 0, max: 23, "data-testid": "daily-hour-input" }}
                 value={hour}
                 onChange={(e) => setHour(Number(e.target.value))}
                 sx={{ width: 60 }}
                 size="small"
+                
               />
               <Typography variant="body2">時</Typography>
               <TextField
                 type="number"
-                inputProps={{ min: 0, max: 59 }}
+                inputProps={{ min: 0, max: 59, "data-testid": "daily-minute-input" }}
                 value={minute}
                 onChange={(e) => setMinute(Number(e.target.value))}
                 sx={{ width: 60 }}
@@ -274,6 +275,7 @@ const CronGenerator = () => {
                 variant="outlined"
                 inputProps={{ readOnly: true }}
                 sx={{ fontFamily: "monospace" }}
+                placeholder="ここにCron式が表示されます"
               />
             </Grid>
             <Grid size={{ xs: 12, sm: 3 }}>
