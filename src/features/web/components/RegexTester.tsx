@@ -175,7 +175,7 @@ const RegexTester = () => {
               {result.ok ? (
                 <>
                   {result.matches.length > 0 ? (
-                    <TableContainer>
+                    <TableContainer data-testid="regex-result-area">
                       <Table size="small">
                         <TableHead>
                           <TableRow>

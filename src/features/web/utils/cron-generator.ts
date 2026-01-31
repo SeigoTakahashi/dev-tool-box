@@ -54,6 +54,14 @@ export const generateCron = ({
 
       // 毎日
       case "daily": {
+        if (hour < 0 || hour > 23) {
+          return { ok: false, error: "時は0〜23で指定してください" };
+        }
+
+        if (minute < 0 || minute > 59) {
+          return { ok: false, error: "分は0〜59で指定してください" };
+        }
+
         return {
           ok: true,
           value: {

@@ -44,10 +44,11 @@ const PasswordChecker = () => {
         variant="outlined"
         onChange={(e) => setPassword(e.target.value)}
         focused
+        placeholder="パスワードを入力"
       />
 
       {password && (
-        <div className="space-y-3 transition-all duration-500 mt-3">
+        <div className="space-y-3 transition-all duration-500 mt-3 strength-indicator">
           {/* 強度ゲージ */}
           <Box className="flex items-center gap-4">
             <Box className="flex-1">
