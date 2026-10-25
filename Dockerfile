@@ -1,10 +1,10 @@
-FROM node:20-alpine
+FROM node:24.22.1-alpine
 
 WORKDIR /app
 
 # 依存関係インストール
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
 # ソースコードをコピー
 COPY . .

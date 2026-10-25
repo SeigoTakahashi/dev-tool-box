@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": "24.22.1"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -14,7 +17,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@imgly/background-removal": "^1.7.0",
+    "@imgly/background-removal": "^1.1.5",
     "@mui/icons-material": "^7.3.6",
     "@mui/material": "^7.3.6",
     "@tailwindcss/vite": "^4.1.17",
